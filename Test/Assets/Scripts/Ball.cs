@@ -32,5 +32,7 @@ public class Ball : MonoBehaviour
     {
         isPressed = false;
         rb.bodyType = defaultRbBodyType;
+
+        Debug.Log("INSERT ERROR HERE");
     }
 }
