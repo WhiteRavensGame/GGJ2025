@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -8301827777988858609, guid: ca848cc4b3643a14dbc158f458d344d4, type: 3}
   m_Color: {r: 0.109703355, g: 0, b: 0.3490566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,7 +141,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: ae4ebd70d9c54c741ae73a368f92905a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -160,9 +160,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8475572411990533574}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94742dc1a8f26fd4dabad6321e1d8657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMode: 1
   rb: {fileID: 2506912875381925087}

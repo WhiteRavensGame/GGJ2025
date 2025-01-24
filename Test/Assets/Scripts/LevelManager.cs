@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
     {
         if (timerRunning)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             var timeSpan = TimeSpan.FromSeconds(timeElapsed);
 
             timeField.text = timeSpan.ToString("m\\:ss\\.ff");

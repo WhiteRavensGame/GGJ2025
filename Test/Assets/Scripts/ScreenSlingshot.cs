@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class ScreenSlingshot : MonoBehaviour
 {
+    [Header("References")]
     public LineRenderer lineRenderer;
     public Transform controllerParent;
     public Transform hook;
     public Transform mouseLoc;
+    public Rigidbody2D testPhyObj;
+
+    [Header("Balancing")]
     public float maxPullDistance;
+    public float launchForceMultiplier = 10;
+
+    [Header("Debug/TEMP")]
     public bool enableSlowMo;
 
-    public Rigidbody2D testPhyObj;
-    
     private Vector2 cursorLoc = Vector2.zero;
-    private float launchForceMultiplier = 10;
     private bool isPressed = false;
 
 
@@ -101,7 +105,7 @@ public class ScreenSlingshot : MonoBehaviour
         if (enableSlowMo)
         {
             Time.timeScale = 1;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
+            Time.fixedDeltaTime = .02f;
         }
             
     }
@@ -116,6 +120,9 @@ public class ScreenSlingshot : MonoBehaviour
         //Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         testPhyObj.linearVelocity = launchDirection * launchForceMultiplier;
+
+        //BAD IDEA - using AddForce (breaks the game by having super speed)
+        //testPhyObj.AddForce(launchDirection * 5, ForceMode2D.Impulse);
 
         Debug.Log("LAUNCH Power: " + magnitude);
     }
