@@ -2,37 +2,58 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public BallMode currentMode;
     public Rigidbody2D rb;
 
-    private bool isPressed = false;
-    private RigidbodyType2D defaultRbBodyType;
+    //private RigidbodyType2D defaultRbBodyType;
 
     void Start()
     {
-        defaultRbBodyType = rb.bodyType;
+        //defaultRbBodyType = rb.bodyType;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPressed)
+        if( Input.GetKeyDown(KeyCode.Alpha1) )
         {
-            rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            ChangeBallMode(BallMode.Small);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeBallMode(BallMode.Medium);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeBallMode(BallMode.Large);
         }
     }
 
-    void OnMouseDown()
+    public void ChangeBallMode(BallMode newMode)
     {
-        isPressed = true;
-        //rb.isKinematic = false;
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        if (newMode == currentMode)
+            return;
+
+        currentMode = newMode;
+        if(currentMode == BallMode.Small)
+        {
+            transform.localScale = Vector3.one * .5f;
+        }
+        else if (currentMode == BallMode.Medium)
+        {
+            transform.localScale = Vector3.one * 1f;
+        }
+        else if (currentMode == BallMode.Large)
+        {
+            transform.localScale = Vector3.one * 1.5f;
+        }
     }
 
-    private void OnMouseUp()
-    {
-        isPressed = false;
-        rb.bodyType = defaultRbBodyType;
+}
 
-        Debug.Log("Charles was here!");
-    }
+public enum BallMode
+{
+    Small = 0,
+    Medium,
+    Large
 }
