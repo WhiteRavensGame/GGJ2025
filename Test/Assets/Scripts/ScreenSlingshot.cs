@@ -9,6 +9,7 @@ public class ScreenSlingshot : MonoBehaviour
     public Transform hook;
     public Transform mouseLoc;
     public float maxPullDistance;
+    public bool enableSlowMo;
 
     public Rigidbody2D testPhyObj;
     
@@ -63,6 +64,8 @@ public class ScreenSlingshot : MonoBehaviour
             //}
         }
 
+
+
     }
 
     void UpdateHookLinePosition()
@@ -79,6 +82,13 @@ public class ScreenSlingshot : MonoBehaviour
         UpdateHookLinePosition();
         controllerParent.gameObject.SetActive(true);
         //rb.bodyType = RigidbodyType2D.Kinematic;
+
+        if(enableSlowMo)
+        {
+            Time.timeScale = 0.1f;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+            
     }
 
     void MouseReleased()
@@ -87,6 +97,13 @@ public class ScreenSlingshot : MonoBehaviour
         LaunchProjectile();
         controllerParent.gameObject.SetActive(false);
         //rb.bodyType = defaultRbBodyType;
+
+        if (enableSlowMo)
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+            
     }
 
     void LaunchProjectile()
