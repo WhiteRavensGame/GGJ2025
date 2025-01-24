@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
@@ -46,6 +47,16 @@ public class Ball : MonoBehaviour
         else if (currentMode == BallMode.Large)
         {
             transform.localScale = Vector3.one * 1.5f;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("TRIGGER ENTERED: " + other.tag);
+        if(other.tag == "Killzone")
+        {
+            //Dead. Respawn.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
