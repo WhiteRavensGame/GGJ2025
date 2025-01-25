@@ -88,7 +88,7 @@ public class Ball : MonoBehaviour
         {
             //QQQQ: Load First Level
             GameManager.Instance.ChangeGameMode(GameMode.Regular);
-
+            GameManager.Instance.LoadNextLevel();
         }
 
     }

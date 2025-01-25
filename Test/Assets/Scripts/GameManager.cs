@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System;
 using TMPro;
+using LeaderboardCreatorDemo;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour
 
     public List<float> times;
 
-    [SerializeField]private GameMode currentGameMode = GameMode.MainMenu;
+    public string playerName;
+
+    [SerializeField] private GameMode currentGameMode = GameMode.MainMenu;
+    [SerializeField] private LeaderboardManager leaderboardManager;
 
     void Awake()
     {
@@ -92,19 +96,22 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        int totalScenes = SceneManager.sceneCountInBuildSettings;
 
-        //TODO: Modify this to be less likely to break everything.  
-        if(nextScene >=  SceneManager.sceneCountInBuildSettings)
+        if (nextScene == totalScenes - 1)
         {
-            //No more levels after. Game end!
+            //You reached the final scene. You win!
             Debug.Log("YOU WIN!");
-            nextScene = nextScene % SceneManager.sceneCountInBuildSettings;
+            ChangeGameMode(GameMode.End);
         }
+        else
+        {
+            SceneManager.LoadScene(nextScene);
 
-        SceneManager.LoadScene(nextScene);
-
-        //TODO: Have a different trigger for officially starting the time (first click?)
-        StartTimer(true, true);
+            //TODO: Have a different trigger for officially starting the time (first click?)
+            StartTimer(true, true);
+        }
+        
     }
 
     public void StartNewGame()
@@ -134,7 +141,7 @@ public class GameManager : MonoBehaviour
         }
         else if(currentGameMode == GameMode.Regular)
         {
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
         }
 
         if (UIManager.Instance != null)
@@ -154,6 +161,15 @@ public class GameManager : MonoBehaviour
         ChangeGameMode(GameMode.MainMenu);
     }
 
+    public void SendTimeToLeaderboard()
+    {
+        leaderboardManager.UploadEntry();
+    }
+
+    public void DisplayLeaderboard()
+    {
+        leaderboardManager.LoadEntries();
+    }
 
 }
 

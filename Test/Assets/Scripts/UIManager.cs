@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using LeaderboardCreatorDemo;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,10 @@ public class UIManager : MonoBehaviour
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
     public TextMeshProUGUI levelCompleteTimeText;
+
+    [Header("End Game UI")]
+    public GameObject endGamePanel;
+    public GameObject leaderboardPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -76,13 +81,32 @@ public class UIManager : MonoBehaviour
 
     public void DisplayGameModeUI(GameMode gameMode)
     {
-        if(gameMode == GameMode.MainMenu || gameMode == GameMode.End)
+        endGamePanel.SetActive(false);
+        if (gameMode == GameMode.MainMenu || gameMode == GameMode.End)
         {
             mainTimer.SetActive(false);
         }
         else
         {
             mainTimer.SetActive(true);
+        }
+
+        if(gameMode == GameMode.End)
+        {
+            endGamePanel.SetActive(true);
+        }
+    }
+
+    public void DisplayLeaderboard(bool show)
+    {
+        leaderboardPanel.SetActive(show);
+        if(show)
+        {
+            GameManager.Instance.DisplayLeaderboard();
+        }
+        else
+        {
+
         }
     }
 }
