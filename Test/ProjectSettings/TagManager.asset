@@ -8,6 +8,7 @@ TagManager:
   - LevelManager
   - StartPoint
   - Killzone
+  - BubblePowerup
   layers:
   - Default
   - TransparentFX

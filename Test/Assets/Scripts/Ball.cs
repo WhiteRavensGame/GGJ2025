@@ -69,6 +69,22 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Finish")
+        {
+            GameManager.Instance.CompleteLevel();
+            collision.gameObject.SetActive(false);
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+        else if (collision.tag == "BubblePowerup")
+        {
+            ChangeBallMode(BallMode.Medium);
+            collision.gameObject.SetActive(false);
+        }
+
+    }
+
 }
 
 public enum BallMode

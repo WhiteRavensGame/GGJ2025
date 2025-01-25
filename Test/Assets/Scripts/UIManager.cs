@@ -28,8 +28,8 @@ public class UIManager : MonoBehaviour
         levelCompleteScreen.SetActive(show);
         if (show)
         {
-            var timeSpan = TimeSpan.FromSeconds(timeFinish);
-            levelCompleteTimeText.text = timeSpan.ToString("m\\:ss\\.ff");
+            string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
+            levelCompleteTimeText.text = displayTime;
             StartCoroutine(LoadNextLevel());
 
         }
@@ -51,8 +51,9 @@ public class UIManager : MonoBehaviour
         //Load next level
         DisplayLevelCompleteScreen(false);
         GameManager.Instance.LoadNextLevel();
-        
-        
+
+        loadingAnimator.Play("LoadingScreenEnd");
+
         yield return null;
     }
 

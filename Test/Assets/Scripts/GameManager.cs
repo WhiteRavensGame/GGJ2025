@@ -18,7 +18,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
+            Debug.Log("WTF");
+            times = new List<float>();
+        } 
         else Destroy(this.gameObject);
 
     }
@@ -28,9 +34,21 @@ public class GameManager : MonoBehaviour
         StartTimer(true);
     }
 
-    void SaveTime()
+    void SaveLevelTime(float levelTime)
     {
-        SceneManager.GetActiveScene();
+        Debug.Log("added time: " + levelTime);
+        times.Add(levelTime);
+    }
+
+    public float CalculateFinalTotalTime()
+    {
+        float total = 0;
+        foreach(var time in times)
+        {
+            total += time;
+        }
+
+        return total;
     }
 
     void FixedUpdate()
@@ -38,13 +56,14 @@ public class GameManager : MonoBehaviour
         if (timerRunning)
         {
             timeElapsed += Time.unscaledDeltaTime;
-            var timeSpan = TimeSpan.FromSeconds(timeElapsed);
-            timeField.text = timeSpan.ToString("m\\:ss\\.ff");
+            timeField.text = ConvertFloatTimeToString(timeElapsed);
         }
     }
 
-    private void StartTimer(bool start)
+    private void StartTimer(bool start, bool resetTimer = false)
     {
+        if (resetTimer && start) timeElapsed = 0;
+
         timerRunning = start;
         if (!start)
         {
@@ -57,23 +76,44 @@ public class GameManager : MonoBehaviour
     {
         StartTimer(false);
         UIManager.Instance.DisplayLevelCompleteScreen(true, timeElapsed);
+        SaveLevelTime(timeElapsed);
     }
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        //TODO: Modify this to be less likely to break everything.  
+        if(nextScene >=  SceneManager.sceneCountInBuildSettings)
+        {
+            //No more levels after. Game end!
+            Debug.Log("YOU WIN!");
+            nextScene = nextScene % SceneManager.sceneCountInBuildSettings;
+        }
+
+        SceneManager.LoadScene(nextScene);
 
         //TODO: Have a different trigger for officially starting the time (first click?)
-        StartTimer(true);
+        StartTimer(true, true);
     }
 
     public void StartNewLevel()
     {
-
-        
-
         //TODO: Run the rest of the intialization here.
     }
 
+    public void StartNewGame()
+    {
+        times.Clear();
+        timeElapsed = 0;
+        
+        SceneManager.LoadScene(0);
+    }
+
+    public string ConvertFloatTimeToString(float time)
+    {
+        var timeSpan = TimeSpan.FromSeconds(time);
+        return timeSpan.ToString("m\\:ss\\.ff");
+    }
 
 }

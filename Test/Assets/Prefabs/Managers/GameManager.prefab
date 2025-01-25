@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4011915144959580883}
   - component: {fileID: 1108524616673163056}
-  - component: {fileID: 6853072583935937990}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -49,18 +48,6 @@ MonoBehaviour:
   timeField: {fileID: 6520043032550434581}
   timeElapsed: 0
   times: []
---- !u!114 &6853072583935937990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8219115839218144083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4acb23f691f1f64baaf821352005167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2606871460305877386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,7 +140,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2417943790942020041, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
