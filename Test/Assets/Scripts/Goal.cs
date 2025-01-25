@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            LevelManager.Instance.StartTimer(false);
+            GameManager.Instance.CompleteLevel();
             gameObject.SetActive(false);
         }
             

@@ -124,7 +124,7 @@ public class ScreenSlingshot : MonoBehaviour
         //BAD IDEA - using AddForce (breaks the game by having super speed)
         //testPhyObj.AddForce(launchDirection * 5, ForceMode2D.Impulse);
 
-        Debug.Log("LAUNCH Power: " + magnitude);
+        //Debug.Log("LAUNCH Power: " + magnitude);
     }
 
 }

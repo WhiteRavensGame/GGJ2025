@@ -50,13 +50,22 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("TRIGGER ENTERED: " + other.tag);
-        if(other.tag == "Killzone")
+        //Debug.Log("TRIGGER ENTERED: " + other.transform.tag);
+        if(other.transform.tag == "Killzone")
         {
-            //Dead. Respawn.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if(currentMode == BallMode.Small)
+            {
+                //Dead. Respawn.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else if(currentMode == BallMode.Medium)
+            {
+                //Shrink player back to small
+                ChangeBallMode(BallMode.Small);
+            }
+            
         }
     }
 

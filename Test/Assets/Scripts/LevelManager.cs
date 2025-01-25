@@ -8,18 +8,13 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
-    public TextMeshProUGUI timeField;
-
-    public float timeElapsed = 0;
-    private bool timerRunning = false;
-
-
     void Start()
     {
-        if(Instance == null)
+        //works differently as the Level Manager parameters are different from the other managers
+        if(Instance == null || Instance.gameObject.IsDestroyed() )
         {
             Instance = this;
-            StartTimer(true);
+            
         }
         else
         {
@@ -28,21 +23,6 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    void FixedUpdate()
-    {
-        if (timerRunning)
-        {
-            timeElapsed += Time.unscaledDeltaTime;
-            var timeSpan = TimeSpan.FromSeconds(timeElapsed);
-
-            timeField.text = timeSpan.ToString("m\\:ss\\.ff");
-        }
-    }
-
-    public void StartTimer(bool start)
-    {
-        timerRunning = start;
-        Debug.Log("TOTAL TIME: " + timeElapsed);
-    }
+    
 
 }
