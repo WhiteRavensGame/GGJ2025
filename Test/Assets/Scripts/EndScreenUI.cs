@@ -17,4 +17,9 @@ public class EndScreenUI : MonoBehaviour
     {
         
     }
+        
+    public void BackToMainMenu()
+    {
+        GameManager.Instance.BackToMainMenu();
+    }
 }

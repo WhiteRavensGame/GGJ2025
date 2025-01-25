@@ -16,14 +16,21 @@ public class GameManager : MonoBehaviour
 
     public List<float> times;
 
+    [SerializeField]private GameMode currentGameMode = GameMode.MainMenu;
+
     void Awake()
     {
         if (Instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
-            Debug.Log("WTF");
+            Debug.Log("SDFSDF");
             times = new List<float>();
+
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+                ChangeGameMode(GameMode.MainMenu);
+            else
+                ChangeGameMode(GameMode.Regular);
         } 
         else Destroy(this.gameObject);
 
@@ -53,6 +60,9 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (currentGameMode == GameMode.MainMenu || currentGameMode == GameMode.End)
+            return;
+
         if (timerRunning)
         {
             timeElapsed += Time.unscaledDeltaTime;
@@ -97,11 +107,6 @@ public class GameManager : MonoBehaviour
         StartTimer(true, true);
     }
 
-    public void StartNewLevel()
-    {
-        //TODO: Run the rest of the intialization here.
-    }
-
     public void StartNewGame()
     {
         times.Clear();
@@ -116,4 +121,46 @@ public class GameManager : MonoBehaviour
         return timeSpan.ToString("m\\:ss\\.ff");
     }
 
+    public void ChangeGameMode(GameMode newGameMode)
+    {
+        Debug.Log("Change game mode: " + newGameMode.ToString());
+        currentGameMode = newGameMode;
+
+        if (currentGameMode == GameMode.MainMenu)
+        {
+            //Load main menu and disable the gameplay UI
+            SceneManager.LoadScene(0);
+            
+        }
+        else if(currentGameMode == GameMode.Regular)
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        if (UIManager.Instance != null)
+            UIManager.Instance.DisplayGameModeUI(currentGameMode);
+        else
+            Debug.LogWarning("WARNING: UI Manager Instance is null");
+
+    }
+
+    public GameMode GetCurrentGameMode()
+    {
+        return currentGameMode;
+    }
+
+    public void BackToMainMenu()
+    {
+        ChangeGameMode(GameMode.MainMenu);
+    }
+
+
+}
+
+public enum GameMode
+{
+    MainMenu,
+    Regular,
+    Speedrun,
+    End
 }

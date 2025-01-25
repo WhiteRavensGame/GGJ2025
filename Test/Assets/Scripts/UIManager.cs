@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Main HUD")]
+    public GameObject mainTimer;
     public TextMeshProUGUI mainTimerText;
     public Animator loadingAnimator;
 
@@ -19,7 +21,17 @@ public class UIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            GameMode mode = GameManager.Instance.GetCurrentGameMode();
+
+            //just startup adapating to what level you spawn in.
+            if ( mode != GameMode.MainMenu || mode != GameMode.End )
+            {
+                mainTimerText.gameObject.SetActive(true);
+            }
+        }
         else Destroy(this.gameObject);
     }
 
@@ -60,5 +72,17 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI GetMainTimerUIText()
     {
         return mainTimerText;
+    }
+
+    public void DisplayGameModeUI(GameMode gameMode)
+    {
+        if(gameMode == GameMode.MainMenu || gameMode == GameMode.End)
+        {
+            mainTimer.SetActive(false);
+        }
+        else
+        {
+            mainTimer.SetActive(true);
+        }
     }
 }

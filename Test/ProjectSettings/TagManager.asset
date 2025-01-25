@@ -9,6 +9,7 @@ TagManager:
   - StartPoint
   - Killzone
   - BubblePowerup
+  - MainMenuTrigger
   layers:
   - Default
   - TransparentFX

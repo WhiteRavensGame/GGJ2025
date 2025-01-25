@@ -67,6 +67,7 @@ public class Ball : MonoBehaviour
             }
             
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,6 +82,13 @@ public class Ball : MonoBehaviour
         {
             ChangeBallMode(BallMode.Medium);
             collision.gameObject.SetActive(false);
+        }
+
+        else if (collision.tag == "MainMenuTrigger")
+        {
+            //QQQQ: Load First Level
+            GameManager.Instance.ChangeGameMode(GameMode.Regular);
+
         }
 
     }
