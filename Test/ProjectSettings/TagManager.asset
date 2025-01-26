@@ -11,6 +11,7 @@ TagManager:
   - BubblePowerup
   - MainMenuTrigger
   - WaterZone
+  - PhysicObstacles
   layers:
   - Default
   - TransparentFX
