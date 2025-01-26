@@ -41,6 +41,16 @@ public class Ball : MonoBehaviour
         }
         
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
+
+        //QQQQ : testing new levels
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            ChangeBallMode(BallMode.Small);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeBallMode(BallMode.Bubbled);
+        }
         
     }
 

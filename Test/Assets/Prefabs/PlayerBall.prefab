@@ -169,5 +169,5 @@ MonoBehaviour:
   rb: {fileID: 2506912875381925087}
   currentEnergy: 100
   maxEnergy: 100
-  energyRegenerationRate: 25
+  energyRegenerationRate: 33
   drowningEnergyRate: 10
