@@ -7887,6 +7887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1103948550258785203, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1674975538865701349, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: m_Pivot.x
       value: 0

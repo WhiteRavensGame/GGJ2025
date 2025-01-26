@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [Header("Main HUD")]
     public GameObject mainTimer;
     public TextMeshProUGUI mainTimerText;
+    public GameObject optionsButton;
     public Slider playerStaminaBar;
     public Image playerStaminaBarColor;
     public Animator loadingAnimator;
@@ -158,10 +159,12 @@ public class UIManager : MonoBehaviour
         if (gameMode == GameMode.MainMenu || gameMode == GameMode.End)
         {
             mainTimer.SetActive(false);
+            optionsButton.SetActive(false);
         }
         else
         {
             mainTimer.SetActive(true);
+            optionsButton.SetActive(true);
         }
 
         if(gameMode == GameMode.End)

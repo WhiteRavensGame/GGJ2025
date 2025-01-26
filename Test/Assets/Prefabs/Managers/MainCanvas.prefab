@@ -812,9 +812,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTimer: {fileID: 400891054889388928}
   mainTimerText: {fileID: 9103656523322580639}
+  optionsButton: {fileID: 1103948550258785203}
+  playerStaminaBar: {fileID: 0}
+  playerStaminaBarColor: {fileID: 0}
   loadingAnimator: {fileID: 8881769858605611094}
+  mainMenuPanel: {fileID: 0}
+  playerNameField: {fileID: 0}
   levelCompleteScreen: {fileID: 7344749438849867794}
+  levelSpeedrunButtonsPanel: {fileID: 0}
   levelCompleteTimeText: {fileID: 1833698962580647078}
+  levelCompleteAnimator: {fileID: 0}
+  endGamePanel: {fileID: 0}
+  leaderboardPanel: {fileID: 0}
 --- !u!1 &1899438120964395424
 GameObject:
   m_ObjectHideFlags: 0

@@ -116,7 +116,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadSameLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(currentLevel);
 
         if (currentGameMode == GameMode.SpeedrunLevel)
             StartTimer(true, true);
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
         }
         else if(newGameMode == GameMode.SpeedrunLevel)
         {
-            SceneManager.LoadScene(currentLevel);
+            //SceneManager.LoadScene(currentLevel);
         }
 
         if (UIManager.Instance != null)
@@ -196,10 +197,11 @@ public class GameManager : MonoBehaviour
     public void BeginLevelSpeedrun(int level)
     {
         currentLevel = level;
+        UIManager.Instance.RestartLevel();
         ChangeGameMode(GameMode.SpeedrunLevel);
 
         //TODO: Have a different trigger for officially starting the time (first click?)
-        StartTimer(true, true);
+        //StartTimer(true, true);
     }
 
     public GameMode GetCurrentGameMode()
