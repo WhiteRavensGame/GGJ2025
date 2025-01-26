@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
     public TextMeshProUGUI levelCompleteTimeText;
+    public Animator levelCompleteAnimator;
 
     [Header("End Game UI")]
     public GameObject endGamePanel;
@@ -87,11 +88,13 @@ public class UIManager : MonoBehaviour
         string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
         levelCompleteTimeText.text = displayTime;
         levelCompleteScreen.SetActive(true);
+        levelCompleteAnimator.Play("WinAnimateIn");
 
         yield return new WaitForSeconds(2f);
 
         //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
         loadingAnimator.Play("LoadingScreenStart");
+        levelCompleteAnimator.Play("WinAnimateOut");
         yield return new WaitForSeconds(0.5f);
         
         //Load next level
