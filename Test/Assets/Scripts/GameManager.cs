@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     //References
     public static GameManager Instance;
     public TextMeshProUGUI timeField;
+    public TMP_InputField nameField;
 
     public float timeElapsed = 0;
     private bool timerRunning = false;
@@ -178,6 +179,16 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ChangePlayerName()
+    {
+        playerName = nameField.text;
+        Debug.Log("player name changed to " + playerName);
+    }
+    public string GetPlayerName()
+    {
+        return playerName;
     }
 
 }

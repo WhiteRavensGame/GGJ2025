@@ -50,9 +50,15 @@ namespace LeaderboardCreatorDemo
                 int i = 0;
                 foreach(var entry in entries)
                 {
+                    //Apply conversion on the score entry (two digits)
+                    float exactTime = entries[i].Score / 100.00f;
+                    string playerName = GameManager.Instance.playerName;
+                    bool isMe = entry.Username == playerName;
+                    //bool isMe = false;
+
                     GameObject g = Instantiate(leaderboardEntryPrefab, leaderboardEntryGrid);
                     LeaderboardEntry leaderboardEntry = g.GetComponent<LeaderboardEntry>();
-                    leaderboardEntry.InitializeContent(entries[i].Rank, entries[i].Username, entries[i].Score);
+                    leaderboardEntry.InitializeContent(entries[i].Rank, entries[i].Username, exactTime, isMe);
                     leaderboardEntries.Add(g);
                     i++;
 
@@ -76,13 +82,14 @@ namespace LeaderboardCreatorDemo
             string playerName = _usernameInputField.text;
             LeaderboardCreator.SetUserGuid(playerName);
 
+            //allow two digits of milliseconds to be recorded
+            float finalScore = Score * 100;
 
-            //TODO: Change leaderboard to support float time
             //Leaderboards.TestLeaderboard.UploadNewEntry(_usernameInputField.text, Score, isSuccessful =>
-            Leaderboards.TestLeaderboard.UploadNewEntry(playerName, Mathf.RoundToInt(Score), isSuccessful =>
+            Leaderboards.TestLeaderboard.UploadNewEntry(playerName, Mathf.FloorToInt(finalScore), isSuccessful =>
             {
                 if (isSuccessful)
-                    Debug.Log("Save successful. Score saved: " + Mathf.RoundToInt(Score));
+                    Debug.Log("Save successful. Score saved: " + Mathf.FloorToInt(finalScore));
                     //LoadEntries();
             });
         }

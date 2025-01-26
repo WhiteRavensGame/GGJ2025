@@ -10,15 +10,15 @@ public class LeaderboardEntry : MonoBehaviour
 
     private bool isMe = false;
 
-    public void InitializeContent(int rank, string name, int score, bool isPlayer = false)
+    public void InitializeContent(int rank, string name, float score, bool isPlayer = false)
     {
         isMe = isPlayer;
-
+        
         rankText.text = rank.ToString();
         nameText.text = name.ToString();
-        scoreText.text = score.ToString();
+        scoreText.text = GameManager.Instance.ConvertFloatTimeToString(score);
 
-        if(isMe)
+        if (isMe)
         {
             rankText.color = Color.yellow;
             nameText.color = Color.yellow;
