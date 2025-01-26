@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI mainTimerText;
     public Animator loadingAnimator;
 
+    [Header("Main Menu HUD")]
+    public TMP_InputField playerNameField;
+
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
     public TextMeshProUGUI levelCompleteTimeText;
@@ -48,7 +51,6 @@ public class UIManager : MonoBehaviour
             string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
             levelCompleteTimeText.text = displayTime;
             StartCoroutine(LoadNextLevel());
-
         }
         else
         {
@@ -81,7 +83,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayGameModeUI(GameMode gameMode)
     {
-        endGamePanel.SetActive(false);
+        
         if (gameMode == GameMode.MainMenu || gameMode == GameMode.End)
         {
             mainTimer.SetActive(false);
@@ -94,6 +96,19 @@ public class UIManager : MonoBehaviour
         if(gameMode == GameMode.End)
         {
             endGamePanel.SetActive(true);
+        }
+        else
+        {
+            endGamePanel.SetActive(false);
+        }
+
+        if(gameMode == GameMode.MainMenu)
+        {
+            playerNameField.gameObject.SetActive(true);
+        }
+        else
+        {
+            playerNameField.gameObject.SetActive(false);
         }
     }
 

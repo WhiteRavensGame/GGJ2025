@@ -115,14 +115,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void StartNewGame()
-    {
-        times.Clear();
-        timeElapsed = 0;
-        
-        SceneManager.LoadScene(0);
-    }
-
     public string ConvertFloatTimeToString(float time)
     {
         var timeSpan = TimeSpan.FromSeconds(time);

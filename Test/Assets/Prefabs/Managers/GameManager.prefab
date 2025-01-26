@@ -2181,6 +2181,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9215503963531230283}
     - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: playerNameField
+      value: 
+      objectReference: {fileID: 832078425195082713}
+    - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: leaderboardPanel
       value: 
       objectReference: {fileID: 6485130198290676604}
