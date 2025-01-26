@@ -119,6 +119,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 329050876586852821}
+  - {fileID: 4906152333735323131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3857583665497670708
@@ -212,3 +213,65 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.29
+--- !u!1001 &8016978993438818589
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2243773890823876100}
+    m_Modifications:
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770555067346946967, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+      propertyPath: m_Name
+      value: VFX_Sparkle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+--- !u!4 &4906152333735323131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3122156066441258214, guid: 25377ff11c631854d88cd044d6cfb3af, type: 3}
+  m_PrefabInstance: {fileID: 8016978993438818589}
+  m_PrefabAsset: {fileID: 0}

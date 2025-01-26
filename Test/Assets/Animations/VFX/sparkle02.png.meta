@@ -67,7 +67,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sparkle02_0: 1761344514724247064
+      sparkle02_1: 5897582256204370331
+      sparkle02_2: -7583774602369565377
+      sparkle02_3: -2811774186707274933
+      sparkle02_4: 776246433908697055
+      sparkle02_5: 1289810622578519868
+      sparkle02_6: 9214950535882493284
+      sparkle02_7: 7608707239354883655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
