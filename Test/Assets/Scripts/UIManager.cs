@@ -18,7 +18,9 @@ public class UIManager : MonoBehaviour
     public Animator loadingAnimator;
 
     [Header("Main Menu HUD")]
+    public GameObject mainMenuPanel;
     public TMP_InputField playerNameField;
+    
 
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
@@ -42,6 +44,7 @@ public class UIManager : MonoBehaviour
             {
                 mainTimerText.gameObject.SetActive(true);
             }
+
         }
         else Destroy(this.gameObject);
     }
@@ -58,6 +61,11 @@ public class UIManager : MonoBehaviour
             levelCompleteScreen.SetActive(show);
             levelCompleteTimeText.text = "";
         }
+    }
+
+    public void StartNewGame()
+    {
+        StartCoroutine(LoadNextLevel(-1));
     }
 
     public void RestartLevel()
@@ -80,18 +88,21 @@ public class UIManager : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator LoadNextLevel(float timeFinish)
+    IEnumerator LoadNextLevel(float timeFinish = -1)
     {
-        //Let the player digest the win animation first. 
-        yield return new WaitForSeconds(1f);
+        if(timeFinish != -1)
+        {
+            //Let the player digest the win animation first. 
+            yield return new WaitForSeconds(1f);
 
-        string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
-        levelCompleteTimeText.text = displayTime;
-        levelCompleteScreen.SetActive(true);
-        levelCompleteAnimator.Play("WinAnimateIn");
+            string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
+            levelCompleteTimeText.text = displayTime;
+            levelCompleteScreen.SetActive(true);
+            levelCompleteAnimator.Play("WinAnimateIn");
 
-        yield return new WaitForSeconds(2f);
-
+            yield return new WaitForSeconds(2f);
+        }
+        
         //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
         loadingAnimator.Play("LoadingScreenStart");
         levelCompleteAnimator.Play("WinAnimateOut");
@@ -134,11 +145,11 @@ public class UIManager : MonoBehaviour
 
         if(gameMode == GameMode.MainMenu)
         {
-            playerNameField.gameObject.SetActive(true);
+            mainMenuPanel.gameObject.SetActive(true);
         }
         else
         {
-            playerNameField.gameObject.SetActive(false);
+            mainMenuPanel.gameObject.SetActive(false);
         }
     }
 
@@ -166,5 +177,20 @@ public class UIManager : MonoBehaviour
             playerStaminaBarColor.color = Color.green;
 
 
+    }
+
+    public void StartGamePressed()
+    {
+        if(playerNameField.text == "")
+        {
+            playerNameField.GetComponent<Animator>().Play("ErrorInput");
+        }
+        else
+        {
+            GameManager.Instance.ChangePlayerName(playerNameField.text);
+
+            //Start game
+            GameManager.Instance.ChangeGameMode(GameMode.Regular);
+        }
     }
 }

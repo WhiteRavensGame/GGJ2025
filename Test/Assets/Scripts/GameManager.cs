@@ -44,7 +44,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartTimer(true);
+        string savedName = PlayerPrefs.GetString("PlayerName");
+        if ( !string.IsNullOrEmpty(savedName) )
+        {
+            nameField.text = savedName.ToString();
+        }
+        Debug.Log(savedName);
+
+        //QQQQ ?
+        //StartTimer(true);
     }
 
     void SaveLevelTime(float levelTime)
@@ -135,6 +143,7 @@ public class GameManager : MonoBehaviour
     public void ChangeGameMode(GameMode newGameMode)
     {
         Debug.Log("Change game mode: " + newGameMode.ToString());
+        GameMode previousGameMode = currentGameMode;
         currentGameMode = newGameMode;
 
         if (currentGameMode == GameMode.MainMenu)
@@ -142,9 +151,9 @@ public class GameManager : MonoBehaviour
             //Load main menu and disable the gameplay UI
             SceneManager.LoadScene(0);
         }
-        else if(currentGameMode == GameMode.Regular)
+        else if(previousGameMode == GameMode.MainMenu && currentGameMode == GameMode.Regular)
         {
-            //SceneManager.LoadScene(1);
+            UIManager.Instance.StartNewGame();
         }
         else if(newGameMode == GameMode.End)
         {
@@ -186,14 +195,21 @@ public class GameManager : MonoBehaviour
         leaderboardManager.LoadEntries();
     }
 
-    public void ChangePlayerName()
+    public void ChangePlayerName(string newName)
     {
-        playerName = nameField.text;
+        playerName = newName;
+        PlayerPrefs.SetString("PlayerName", playerName);
         Debug.Log("player name changed to " + playerName);
     }
     public string GetPlayerName()
     {
         return playerName;
+    }
+    public void ChangeNameDebug()
+    {
+        float rand = UnityEngine.Random.Range(100, 9999);
+        playerName = "Guest " + rand;
+        Debug.Log("player name changed to " + playerName);
     }
 
 }

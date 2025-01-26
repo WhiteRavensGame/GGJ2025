@@ -31,7 +31,8 @@ public class Switch : MonoBehaviour
     {
         if (other.tag == "PhysicObstacles" || other.tag == "Player")
         {
-            objectToHide.SetActive(true);
+            if(objectToHide != null)
+                objectToHide.SetActive(true);
         }
     }
 }
