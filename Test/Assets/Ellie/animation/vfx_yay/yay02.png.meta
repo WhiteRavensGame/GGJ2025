@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yay02_0: 6939999525934806279
+      yay02_1: 7029365854949677148
+      yay02_2: 4369280269728421017
+      yay02_3: -3224903170287697547
+      yay02_4: 7283153740351962066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
