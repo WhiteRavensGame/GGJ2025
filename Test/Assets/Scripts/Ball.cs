@@ -10,6 +10,10 @@ public class Ball : MonoBehaviour
     public float currentEnergy;
     public float maxEnergy;
     public float energyRegenerationRate;
+    public float drowningEnergyRate;
+
+    private bool insideWater;
+    private bool finishedLevel;
 
     //private RigidbodyType2D defaultRbBodyType;
 
@@ -21,8 +25,21 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentEnergy += Time.deltaTime * energyRegenerationRate;
-        currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+        //Small ball cannot breathe underwater
+        if( !insideWater || (insideWater && currentMode == BallMode.Bubbled) )
+        {
+            currentEnergy += Time.deltaTime * energyRegenerationRate;
+            currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+        }
+        else
+        {
+            currentEnergy -= Time.deltaTime * drowningEnergyRate;
+            if( currentEnergy <= 0 && finishedLevel )
+            {
+                Die();
+            }
+        }
+        
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
         
     }
@@ -37,7 +54,7 @@ public class Ball : MonoBehaviour
         {
             transform.localScale = Vector3.one * .5f;
         }
-        else if (currentMode == BallMode.Medium)
+        else if (currentMode == BallMode.Bubbled)
         {
             transform.localScale = Vector3.one * 1f;
         }
@@ -63,6 +80,12 @@ public class Ball : MonoBehaviour
         currentEnergy -= energyConsumed;
     }
 
+    private void Die()
+    {
+        //Dead. Respawn.
+        GameManager.Instance.RestartLevel();
+    }
+
 
     public void OnCollisionEnter2D(Collision2D other)
     {
@@ -71,10 +94,9 @@ public class Ball : MonoBehaviour
         {
             if(currentMode == BallMode.Small)
             {
-                //Dead. Respawn.
-                GameManager.Instance.RestartLevel();
+                Die();
             }
-            else if(currentMode == BallMode.Medium)
+            else if(currentMode == BallMode.Bubbled)
             {
                 //Shrink player back to small
                 ChangeBallMode(BallMode.Small);
@@ -94,7 +116,7 @@ public class Ball : MonoBehaviour
         }
         else if (collision.tag == "BubblePowerup")
         {
-            ChangeBallMode(BallMode.Medium);
+            ChangeBallMode(BallMode.Bubbled);
             collision.gameObject.SetActive(false);
         }
 
@@ -106,12 +128,19 @@ public class Ball : MonoBehaviour
         }
 
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "WaterZone")
+        {
+            insideWater = true;
+        }
+    }
 
 }
 
 public enum BallMode
 {
     Small = 0,
-    Medium,
+    Bubbled,
     Large
 }

@@ -10,6 +10,7 @@ TagManager:
   - Killzone
   - BubblePowerup
   - MainMenuTrigger
+  - WaterZone
   layers:
   - Default
   - TransparentFX

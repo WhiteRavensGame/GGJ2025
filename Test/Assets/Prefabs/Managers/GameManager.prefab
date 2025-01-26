@@ -2242,7 +2242,7 @@ MonoBehaviour:
   timeField: {fileID: 6520043032550434581}
   timeElapsed: 0
   times: []
-  playerName: DEFAULT
+  playerName: CHEATER
   currentGameMode: 1
   leaderboardManager: {fileID: 3098654096530216655}
 --- !u!114 &3098654096530216655

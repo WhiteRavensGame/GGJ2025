@@ -127,12 +127,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerStaminaDisplay(float min, float max)
+    public void UpdatePlayerStaminaDisplay(float min, float max, float danger = 0.33f)
     {
         float percent = min / max;
         playerStaminaBar.value = percent;
 
-        if (playerStaminaBar.value <= 0.25f)
+        if (playerStaminaBar.value <= danger)
             playerStaminaBarColor.color = Color.red;
         else
             playerStaminaBarColor.color = Color.green;

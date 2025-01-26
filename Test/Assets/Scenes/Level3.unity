@@ -459,10 +459,6 @@ PrefabInstance:
       propertyPath: enableSlowMo
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2197292690571133614, guid: 288b8c30afa1080408bcfa0866dceb73, type: 3}
-      propertyPath: launchForceMultiplier
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6285213214564811962, guid: 288b8c30afa1080408bcfa0866dceb73, type: 3}
       propertyPath: m_Name
       value: ControlManager
@@ -480,25 +476,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3098654096530216655, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: '_entryTextObjects.Array.data[0]'
-      value: 
+    - target: {fileID: 2725039925519898341, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3098654096530216655, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: '_entryTextObjects.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098654096530216655, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: '_entryTextObjects.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098654096530216655, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: '_entryTextObjects.Array.data[3]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098654096530216655, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: '_entryTextObjects.Array.data[4]'
-      value: 
+    - target: {fileID: 2725039925519898341, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4011915144959580883, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4141,11 +4125,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 110717550261510344, guid: 0c5bbd4dec8c4bb4098604b289b264e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.61
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 110717550261510344, guid: 0c5bbd4dec8c4bb4098604b289b264e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.63
+      value: -3.91
       objectReference: {fileID: 0}
     - target: {fileID: 110717550261510344, guid: 0c5bbd4dec8c4bb4098604b289b264e5, type: 3}
       propertyPath: m_LocalPosition.z

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 948220685512162471}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: WaterZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

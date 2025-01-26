@@ -226,7 +226,7 @@ MonoBehaviour:
   testPhyObj: {fileID: 0}
   maxPullDistance: 3
   launchForceMultiplier: 5
-  energyConsumption: 25
+  slingEnergyRequired: 33
   enableSlowMo: 1
 --- !u!1 &9009071134472797236
 GameObject:

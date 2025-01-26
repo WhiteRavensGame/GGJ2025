@@ -237,10 +237,6 @@ PrefabInstance:
       propertyPath: enableSlowMo
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2197292690571133614, guid: 288b8c30afa1080408bcfa0866dceb73, type: 3}
-      propertyPath: launchForceMultiplier
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6285213214564811962, guid: 288b8c30afa1080408bcfa0866dceb73, type: 3}
       propertyPath: m_Name
       value: ControlManager
