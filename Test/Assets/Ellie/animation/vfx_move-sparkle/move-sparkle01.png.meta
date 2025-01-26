@@ -435,7 +435,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      move-sparkle01_0: 4719769719742832479
+      move-sparkle01_1: 3282411943304959325
+      move-sparkle01_10: 7172963615513211901
+      move-sparkle01_11: -3164170179418829286
+      move-sparkle01_2: -4494362424582464688
+      move-sparkle01_3: 7973278817167644521
+      move-sparkle01_4: 4541014967311489642
+      move-sparkle01_5: 6765571037322565756
+      move-sparkle01_6: -4262644870595209232
+      move-sparkle01_7: -7091288748353551405
+      move-sparkle01_8: -6234232517067083681
+      move-sparkle01_9: -1327145413147906092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
