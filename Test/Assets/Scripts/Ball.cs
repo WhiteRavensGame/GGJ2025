@@ -133,6 +133,15 @@ public class Ball : MonoBehaviour
         
     }
 
+    public bool IsDead()
+    {
+        return isDead;
+    }
+    public bool HasWon()
+    {
+        return finishedLevel;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Finish")

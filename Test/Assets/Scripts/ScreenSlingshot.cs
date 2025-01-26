@@ -34,6 +34,9 @@ public class ScreenSlingshot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerReference.IsDead() || playerReference.HasWon())
+            return;
+
         if(Input.GetMouseButtonDown(0))
         {
             MousePressed();

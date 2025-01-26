@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public float timeElapsed = 0;
     private bool timerRunning = false;
+    private int currentLevel = 0;
 
     public List<float> times;
 
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         int totalScenes = SceneManager.sceneCountInBuildSettings;
+        currentLevel = nextScene;
 
         if (nextScene == totalScenes - 1)
         {
@@ -146,7 +148,7 @@ public class GameManager : MonoBehaviour
         GameMode previousGameMode = currentGameMode;
         currentGameMode = newGameMode;
 
-        if (currentGameMode == GameMode.MainMenu)
+        if (newGameMode == GameMode.MainMenu)
         {
             //Load main menu and disable the gameplay UI
             SceneManager.LoadScene(0);
@@ -159,12 +161,37 @@ public class GameManager : MonoBehaviour
         {
             SendTimeToLeaderboard();
         }
+        else if(newGameMode == GameMode.SpeedrunLevel)
+        {
+            SceneManager.LoadScene(currentLevel);
+        }
 
         if (UIManager.Instance != null)
             UIManager.Instance.DisplayGameModeUI(currentGameMode);
         else
-            Debug.LogWarning("WARNING: UI Manager Instance is null");
+        {
+            Debug.LogWarning("WARNING: UI Manager Instance is null. Reload attempting...");
+            Invoke("ReloadUI", 0.2f);
+        }
+            
 
+    }
+
+    private void ReloadUI()
+    {
+        if (UIManager.Instance != null)
+            UIManager.Instance.DisplayGameModeUI(currentGameMode);
+        else
+            Debug.LogWarning("WARNING: UI Manager Instance is STILL null. Increase timer/loads.");
+    }
+
+    public void BeginLevelSpeedrun(int level)
+    {
+        currentLevel = level;
+        ChangeGameMode(GameMode.SpeedrunLevel);
+
+        //TODO: Have a different trigger for officially starting the time (first click?)
+        StartTimer(true, true);
     }
 
     public GameMode GetCurrentGameMode()
@@ -218,6 +245,6 @@ public enum GameMode
 {
     MainMenu,
     Regular,
-    Speedrun,
+    SpeedrunLevel,
     End
 }
