@@ -3,6 +3,8 @@ using UnityEngine;
 public class VFXManager : MonoBehaviour
 {
     public static VFXManager Instance;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
