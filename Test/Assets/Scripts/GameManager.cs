@@ -100,8 +100,13 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         StartTimer(false);
-        UIManager.Instance.DisplayLevelCompleteScreen(true, timeElapsed);
         SaveLevelTime(timeElapsed);
+
+        if(currentGameMode == GameMode.SpeedrunLevel)
+            UIManager.Instance.DisplayLevelCompleteScreen(true, timeElapsed);
+        else
+            UIManager.Instance.DisplayLevelCompleteScreen(true, CalculateFinalTotalTime());
+        
     }
 
     public void RestartLevel()
@@ -112,6 +117,9 @@ public class GameManager : MonoBehaviour
     public void LoadSameLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (currentGameMode == GameMode.SpeedrunLevel)
+            StartTimer(true, true);
     }
 
     public void LoadNextLevel()

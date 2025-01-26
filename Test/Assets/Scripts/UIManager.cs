@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
+    public GameObject levelSpeedrunButtonsPanel;
     public TextMeshProUGUI levelCompleteTimeText;
     public Animator levelCompleteAnimator;
 
@@ -54,6 +55,12 @@ public class UIManager : MonoBehaviour
         //Special effect when showing the screen. Using coroutine.
         if (show)
         {
+            //Hide the buttons if doing level speedruns.
+            if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
+                levelSpeedrunButtonsPanel.SetActive(true);
+            else
+                levelSpeedrunButtonsPanel.SetActive(false);
+
             StartCoroutine(LoadNextLevel(timeFinish));
         }
         else
@@ -68,6 +75,25 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadNextLevel(-1));
     }
 
+    //Only during level speedrun mode.
+    public void BackToMainMenuFromMidLevel()
+    {
+        StartCoroutine(BackToMainMenuFade());
+    }
+
+    IEnumerator BackToMainMenuFade()
+    {
+        loadingAnimator.Play("LoadingScreenStart");
+        yield return new WaitForSeconds(0.5f);
+
+        //Load main menu
+        DisplayLevelCompleteScreen(false);
+        GameManager.Instance.BackToMainMenu();
+
+        loadingAnimator.Play("LoadingScreenEnd");
+        yield return null;
+    }
+
     public void RestartLevel()
     {
         StartCoroutine(RestartLevelFade());
@@ -75,7 +101,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator RestartLevelFade()
     {
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         loadingAnimator.Play("LoadingScreenStart");
         yield return new WaitForSeconds(0.5f);
@@ -103,17 +129,21 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
         
-        //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
-        loadingAnimator.Play("LoadingScreenStart");
-        levelCompleteAnimator.Play("WinAnimateOut");
-        yield return new WaitForSeconds(0.5f);
+        //Only animate out if playing regular mode.
+        if(GameManager.Instance.GetCurrentGameMode() == GameMode.Regular)
+        {
+            //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
+            loadingAnimator.Play("LoadingScreenStart");
+            levelCompleteAnimator.Play("WinAnimateOut");
+            yield return new WaitForSeconds(0.5f);
+
+            //Load next level
+            DisplayLevelCompleteScreen(false);
+            GameManager.Instance.LoadNextLevel();
+
+            loadingAnimator.Play("LoadingScreenEnd");
+        }
         
-        //Load next level
-        DisplayLevelCompleteScreen(false);
-        GameManager.Instance.LoadNextLevel();
-
-        loadingAnimator.Play("LoadingScreenEnd");
-
         yield return null;
     }
 
@@ -179,6 +209,7 @@ public class UIManager : MonoBehaviour
 
     }
 
+    //Main Menu Input
     public void StartGamePressed()
     {
         if(playerNameField.text == "")
