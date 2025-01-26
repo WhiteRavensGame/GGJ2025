@@ -72,9 +72,14 @@ namespace LeaderboardCreatorDemo
 
         public void UploadEntry()
         {
+            //Use the player name as the ID on the leaderboard as well.
+            string playerName = _usernameInputField.text;
+            LeaderboardCreator.SetUserGuid(playerName);
+
+
             //TODO: Change leaderboard to support float time
             //Leaderboards.TestLeaderboard.UploadNewEntry(_usernameInputField.text, Score, isSuccessful =>
-            Leaderboards.TestLeaderboard.UploadNewEntry(_usernameInputField.text, Mathf.RoundToInt(Score), isSuccessful =>
+            Leaderboards.TestLeaderboard.UploadNewEntry(playerName, Mathf.RoundToInt(Score), isSuccessful =>
             {
                 if (isSuccessful)
                     Debug.Log("Save successful. Score saved: " + Mathf.RoundToInt(Score));
