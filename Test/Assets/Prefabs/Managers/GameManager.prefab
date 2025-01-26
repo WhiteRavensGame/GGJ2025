@@ -2464,6 +2464,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager (Canvas)
       objectReference: {fileID: 0}
+    - target: {fileID: 5492156342338395368, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e0b769091e5eb8409141079f1c63e2b, type: 2}
+    - target: {fileID: 5492156342338395368, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6366731631117055395, guid: 5e0b769091e5eb8409141079f1c63e2b, type: 2}
     - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: endGamePanel
       value: 
