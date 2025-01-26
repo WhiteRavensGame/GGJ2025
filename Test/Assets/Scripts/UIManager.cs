@@ -60,6 +60,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void RestartLevel()
+    {
+        StartCoroutine(RestartLevelFade());
+    }
+
+    IEnumerator RestartLevelFade()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        loadingAnimator.Play("LoadingScreenStart");
+        yield return new WaitForSeconds(0.5f);
+
+        //Load next level
+        DisplayLevelCompleteScreen(false);
+        GameManager.Instance.LoadSameLevel();
+
+        loadingAnimator.Play("LoadingScreenEnd");
+        yield return null;
+    }
+
     IEnumerator LoadNextLevel()
     {
         //Let the player digest the win screen first, and then fade after. 

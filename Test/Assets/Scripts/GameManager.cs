@@ -95,6 +95,16 @@ public class GameManager : MonoBehaviour
         SaveLevelTime(timeElapsed);
     }
 
+    public void RestartLevel()
+    {
+        UIManager.Instance.RestartLevel();
+    }
+
+    public void LoadSameLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void LoadNextLevel()
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
@@ -174,11 +184,6 @@ public class GameManager : MonoBehaviour
     public void DisplayLeaderboard()
     {
         leaderboardManager.LoadEntries();
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChangePlayerName()

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
     public BallMode currentMode;
     public Rigidbody2D rb;
+    public Animator animator;
 
     [Header("Energy System")]
     public float currentEnergy;
@@ -14,17 +16,23 @@ public class Ball : MonoBehaviour
 
     private bool insideWater;
     private bool finishedLevel;
+    private bool isDead;
 
     //private RigidbodyType2D defaultRbBodyType;
 
     void Start()
     {
         //defaultRbBodyType = rb.bodyType;
+        finishedLevel = false;
+        isDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+            return;
+
         //Small ball cannot breathe underwater
         if( !insideWater || (insideWater && currentMode == BallMode.Bubbled) )
         {
@@ -93,6 +101,11 @@ public class Ball : MonoBehaviour
     private void Die()
     {
         //Dead. Respawn.
+        isDead = true;
+        animator.Play("Die");
+        rb.linearVelocity = Vector3.zero;
+        rb.freezeRotation = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         GameManager.Instance.RestartLevel();
     }
 
@@ -123,6 +136,7 @@ public class Ball : MonoBehaviour
             GameManager.Instance.CompleteLevel();
             collision.gameObject.SetActive(false);
             rb.bodyType = RigidbodyType2D.Static;
+            finishedLevel = true;
         }
         else if (collision.tag == "BubblePowerup")
         {
