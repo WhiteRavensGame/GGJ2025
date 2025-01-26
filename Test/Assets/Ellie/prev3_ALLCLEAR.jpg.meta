@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 223e5ed51ccfb62448f47fff1338df49
+guid: e08e8c45b59617f4c991be5258825191
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2800371094672226010
-    second: puffedpillpet_0
-  - first:
-      213: -100357576983584696
-    second: puffedpillpet_1
+      213: -4050348286847174965
+    second: prev3_ALLCLEAR_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -78,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,35 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: puffedpillpet_0
+      name: prev3_ALLCLEAR_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 149
-        width: 124
-        height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6294ace83551329d0800000000000000
-      internalID: -2800371094672226010
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puffedpillpet_1
-      rect:
-        serializedVersion: 2
-        x: 14
         y: 0
-        width: 823
-        height: 633
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 840ef51c0557b9ef0800000000000000
-      internalID: -100357576983584696
+      spriteID: bc6bcd951b54ac7c0800000000000000
+      internalID: -4050348286847174965
       vertices: []
       indices: 
       edges: []
@@ -176,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      puffedpillpet_0: -2800371094672226010
-      puffedpillpet_1: -100357576983584696
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

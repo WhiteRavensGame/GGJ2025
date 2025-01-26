@@ -6,7 +6,12 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource audioSource;
 
-    public AudioClip sampleclip;
+    public AudioClip jumpAudioClip;
+    public AudioClip yayAudioClip;
+    public AudioClip deathAudioClip;
+    public AudioClip bubblePopAudioClip;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,16 +20,7 @@ public class AudioManager : MonoBehaviour
             Instance = this;
         else
             Destroy(this.gameObject);
-
-        Invoke("test", 3);
     }
-
-    public void test()
-    {
-        Debug.Log("test");
-        audioSource.PlayOneShot(sampleclip);
-    }
-
 
     public void PlayAudio()
     {

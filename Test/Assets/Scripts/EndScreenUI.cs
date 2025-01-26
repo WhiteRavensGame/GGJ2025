@@ -11,7 +11,7 @@ public class EndScreenUI : MonoBehaviour
     private void OnEnable()
     {
         float totalClearTime = GameManager.Instance.CalculateFinalTotalTime();
-        textClearTime.text = "CLEAR TIME: " + GameManager.Instance.ConvertFloatTimeToString(totalClearTime);
+        textClearTime.text = GameManager.Instance.ConvertFloatTimeToString(totalClearTime);
     }
 
     //Button Events
