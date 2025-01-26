@@ -6,6 +6,10 @@ public class Ball : MonoBehaviour
     public BallMode currentMode;
     public Rigidbody2D rb;
 
+    [Header("Energy System")]
+    public float currentEnergy;
+    public float maxEnergy;
+
     //private RigidbodyType2D defaultRbBodyType;
 
     void Start()
@@ -16,18 +20,10 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKeyDown(KeyCode.Alpha1) )
-        {
-            ChangeBallMode(BallMode.Small);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeBallMode(BallMode.Medium);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeBallMode(BallMode.Large);
-        }
+        currentEnergy += Time.deltaTime;
+        currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+        UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
+        
     }
 
     public void ChangeBallMode(BallMode newMode)

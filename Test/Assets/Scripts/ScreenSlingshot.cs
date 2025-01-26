@@ -14,6 +14,7 @@ public class ScreenSlingshot : MonoBehaviour
     [Header("Balancing")]
     public float maxPullDistance;
     public float launchForceMultiplier = 10;
+    public float energyConsumption = 25;
 
     [Header("Debug/TEMP")]
     public bool enableSlowMo;

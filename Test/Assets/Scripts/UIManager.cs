@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [Header("Main HUD")]
     public GameObject mainTimer;
     public TextMeshProUGUI mainTimerText;
+    public Slider playerStaminaBar;
+    public Image playerStaminaBarColor;
     public Animator loadingAnimator;
 
     [Header("Main Menu HUD")]
@@ -123,5 +125,18 @@ public class UIManager : MonoBehaviour
         {
 
         }
+    }
+
+    public void UpdatePlayerStaminaDisplay(float min, float max)
+    {
+        float percent = min / max;
+        playerStaminaBar.value = percent;
+
+        if (playerStaminaBar.value <= 0.25f)
+            playerStaminaBarColor.color = Color.red;
+        else
+            playerStaminaBarColor.color = Color.green;
+
+
     }
 }
