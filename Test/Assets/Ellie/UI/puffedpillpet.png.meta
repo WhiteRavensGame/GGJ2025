@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      puffedpillpet_0: -2800371094672226010
+      puffedpillpet_1: -100357576983584696
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
