@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: c0a1281f97542a641940b34857a79134
+guid: 25af89e5ddc5e78438fc6493b81ff078
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3791604420158717664
-    second: leaderboard_bar_0
+      213: -4757113510166536043
+    second: yay01_0
+  - first:
+      213: -5741095309816244664
+    second: yay01_1
+  - first:
+      213: -7277472628945458785
+    second: yay01_2
+  - first:
+      213: -6337195769814203504
+    second: yay01_3
+  - first:
+      213: 5816360731075866796
+    second: yay01_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: leaderboard_bar_0
+      name: yay01_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1500
-        height: 128
+        y: 22
+        width: 31
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +153,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ee7c50a12c7e9430800000000000000
-      internalID: 3791604420158717664
+      spriteID: 590ef4e77765bfdb0800000000000000
+      internalID: -4757113510166536043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yay01_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 28
+        width: 30
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 846ddbcbb388350b0800000000000000
+      internalID: -5741095309816244664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yay01_2
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 31
+        width: 27
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99e311a339310b90800000000000000
+      internalID: -7277472628945458785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yay01_3
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 17
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 093cd14f502cd08a0800000000000000
+      internalID: -6337195769814203504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yay01_4
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca0fe4db44dd7b050800000000000000
+      internalID: 5816360731075866796
       vertices: []
       indices: 
       edges: []
@@ -160,8 +260,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      leaderboard_bar_0: 3791604420158717664
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
