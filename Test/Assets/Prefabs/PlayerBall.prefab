@@ -257,6 +257,7 @@ MonoBehaviour:
   currentMode: 0
   rb: {fileID: 2506912875381925087}
   animator: {fileID: 8066404317046042335}
+  bubbleSprite: {fileID: 1951518731041783673}
   currentEnergy: 100
   maxEnergy: 100
   energyRegenerationRate: 33

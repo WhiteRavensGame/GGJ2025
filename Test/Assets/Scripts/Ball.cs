@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     public BallMode currentMode;
     public Rigidbody2D rb;
     public Animator animator;
+    public SpriteRenderer bubbleSprite;
 
     [Header("Energy System")]
     public float currentEnergy;
@@ -71,10 +72,12 @@ public class Ball : MonoBehaviour
         if(currentMode == BallMode.Small)
         {
             transform.localScale = Vector3.one * .5f;
+            bubbleSprite.gameObject.SetActive(false);
         }
         else if (currentMode == BallMode.Bubbled)
         {
             transform.localScale = Vector3.one * 1f;
+            bubbleSprite.gameObject.SetActive(true);
         }
         else if (currentMode == BallMode.Large)
         {
