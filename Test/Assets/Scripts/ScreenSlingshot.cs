@@ -10,11 +10,12 @@ public class ScreenSlingshot : MonoBehaviour
     public Transform hook;
     public Transform mouseLoc;
     public Rigidbody2D testPhyObj;
+    private Ball playerReference;
 
     [Header("Balancing")]
     public float maxPullDistance;
     public float launchForceMultiplier = 10;
-    public float energyConsumption = 25;
+    public float slingEnergyRequired = 25;
 
     [Header("Debug/TEMP")]
     public bool enableSlowMo;
@@ -27,6 +28,7 @@ public class ScreenSlingshot : MonoBehaviour
     void Start()
     {
         UpdateHookLinePosition();
+        playerReference = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class ScreenSlingshot : MonoBehaviour
         {
             MousePressed();
         }
-        else if(Input.GetMouseButtonUp(0))
+        else if(Input.GetMouseButtonUp(0) && isPressed)
         {
             MouseReleased();
         }
@@ -69,8 +71,6 @@ public class ScreenSlingshot : MonoBehaviour
             //}
         }
 
-
-
     }
 
     void UpdateHookLinePosition()
@@ -81,6 +81,13 @@ public class ScreenSlingshot : MonoBehaviour
 
     void MousePressed()
     {
+        //if not enough energy, no slingshot.
+        if (!playerReference.HasEnoughEnergy(slingEnergyRequired))
+            return;
+
+        //Use the ball's energy to be able to slingshot.
+        playerReference.ConsumeEnergy(slingEnergyRequired);
+
         isPressed = true;
         Vector2 mouseLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         controllerParent.position = mouseLoc;

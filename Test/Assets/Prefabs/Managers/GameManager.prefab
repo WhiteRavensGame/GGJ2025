@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6014813, g: 1, b: 0.33018857, a: 1}
+  m_Color: {r: 0, g: 0.87169814, b: 0.55247, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2449,7 +2449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873134646026408596, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: m_Name
-      value: MainCanvas
+      value: UIManager (Canvas)
       objectReference: {fileID: 0}
     - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: endGamePanel
@@ -2463,6 +2463,14 @@ PrefabInstance:
       propertyPath: leaderboardPanel
       value: 
       objectReference: {fileID: 6485130198290676604}
+    - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: playerStaminaBar
+      value: 
+      objectReference: {fileID: 905125262116607056}
+    - target: {fileID: 6023949477048734001, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
+      propertyPath: playerStaminaBarColor
+      value: 
+      objectReference: {fileID: 5540195024088245378}
     - target: {fileID: 7216543079531656792, guid: e28aaf17f4f133e4397c28aaaac7146f, type: 3}
       propertyPath: m_Name
       value: LoadingUIPanel

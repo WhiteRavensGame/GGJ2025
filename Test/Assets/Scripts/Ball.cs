@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     [Header("Energy System")]
     public float currentEnergy;
     public float maxEnergy;
+    public float energyRegenerationRate;
 
     //private RigidbodyType2D defaultRbBodyType;
 
@@ -20,7 +21,7 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentEnergy += Time.deltaTime;
+        currentEnergy += Time.deltaTime * energyRegenerationRate;
         currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
         
@@ -45,6 +46,23 @@ public class Ball : MonoBehaviour
             transform.localScale = Vector3.one * 1.5f;
         }
     }
+
+    public bool HasEnoughEnergy(float energyRequired)
+    {
+        if (currentEnergy >= energyRequired)
+            return true;
+        else
+            return false;
+    }
+    public float GetCurrentEnergy()
+    {
+        return currentEnergy;
+    }
+    public void ConsumeEnergy(float energyConsumed)
+    {
+        currentEnergy -= energyConsumed;
+    }
+
 
     public void OnCollisionEnter2D(Collision2D other)
     {

@@ -223,8 +223,11 @@ MonoBehaviour:
   controllerParent: {fileID: 1372920933351430504}
   hook: {fileID: 3940198192787359700}
   mouseLoc: {fileID: 8747772708818625573}
-  maxPullDistance: 3
   testPhyObj: {fileID: 0}
+  maxPullDistance: 3
+  launchForceMultiplier: 5
+  energyConsumption: 25
+  enableSlowMo: 1
 --- !u!1 &9009071134472797236
 GameObject:
   m_ObjectHideFlags: 0
