@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour
         else
         {
             currentEnergy -= Time.deltaTime * drowningEnergyRate;
-            if( currentEnergy <= 0 && finishedLevel )
+            if( currentEnergy <= 0 && !finishedLevel )
             {
                 Die();
             }
@@ -43,11 +43,11 @@ public class Ball : MonoBehaviour
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
 
         //QQQQ : testing new levels
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeBallMode(BallMode.Small);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha1))
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeBallMode(BallMode.Bubbled);
         }
@@ -143,6 +143,14 @@ public class Ball : MonoBehaviour
         if(collision.tag == "WaterZone")
         {
             insideWater = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "WaterZone")
+        {
+            insideWater = false;
         }
     }
 

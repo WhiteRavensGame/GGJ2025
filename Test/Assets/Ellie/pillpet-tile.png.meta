@@ -156,6 +156,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -634,7 +660,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pillpet-tile_0: 1418330322937488572
+      pillpet-tile_1: -6520722699357746845
+      pillpet-tile_10: -7075542508877751899
+      pillpet-tile_11: -4410881166620346511
+      pillpet-tile_12: 3006751412421043927
+      pillpet-tile_13: 250385994788809685
+      pillpet-tile_14: -8287984221093793882
+      pillpet-tile_15: 1930359247883595498
+      pillpet-tile_16: -1397435416836595014
+      pillpet-tile_17: -1626148261196273794
+      pillpet-tile_18: -2529032087794293690
+      pillpet-tile_19: 6774783325491186062
+      pillpet-tile_2: 7453042206458193907
+      pillpet-tile_20: -1403876585180132803
+      pillpet-tile_3: -6758457685674449847
+      pillpet-tile_4: -6439942412500993183
+      pillpet-tile_5: 4665302649316498289
+      pillpet-tile_6: 6342547253013591480
+      pillpet-tile_7: 1990490368040578217
+      pillpet-tile_8: 5908208194739298856
+      pillpet-tile_9: 6654871926527282439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
