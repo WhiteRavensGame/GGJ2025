@@ -106,6 +106,7 @@ public class Ball : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.freezeRotation = true;
         rb.bodyType = RigidbodyType2D.Kinematic;
+        transform.eulerAngles = Vector3.zero;
         GameManager.Instance.RestartLevel();
     }
 
@@ -137,6 +138,8 @@ public class Ball : MonoBehaviour
             collision.gameObject.SetActive(false);
             rb.bodyType = RigidbodyType2D.Static;
             finishedLevel = true;
+            animator.Play("Victory");
+            transform.eulerAngles = Vector3.zero;
         }
         else if (collision.tag == "BubblePowerup")
         {

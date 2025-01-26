@@ -47,15 +47,14 @@ public class UIManager : MonoBehaviour
 
     public void DisplayLevelCompleteScreen(bool show, float timeFinish = 0)
     {
-        levelCompleteScreen.SetActive(show);
+        //Special effect when showing the screen. Using coroutine.
         if (show)
         {
-            string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
-            levelCompleteTimeText.text = displayTime;
-            StartCoroutine(LoadNextLevel());
+            StartCoroutine(LoadNextLevel(timeFinish));
         }
         else
         {
+            levelCompleteScreen.SetActive(show);
             levelCompleteTimeText.text = "";
         }
     }
@@ -80,9 +79,15 @@ public class UIManager : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator LoadNextLevel()
+    IEnumerator LoadNextLevel(float timeFinish)
     {
-        //Let the player digest the win screen first, and then fade after. 
+        //Let the player digest the win animation first. 
+        yield return new WaitForSeconds(1f);
+
+        string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
+        levelCompleteTimeText.text = displayTime;
+        levelCompleteScreen.SetActive(true);
+
         yield return new WaitForSeconds(2f);
 
         //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
