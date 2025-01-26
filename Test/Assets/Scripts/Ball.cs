@@ -58,7 +58,7 @@ public class Ball : MonoBehaviour
             if(currentMode == BallMode.Small)
             {
                 //Dead. Respawn.
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameManager.Instance.RestartLevel();
             }
             else if(currentMode == BallMode.Medium)
             {

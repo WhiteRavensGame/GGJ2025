@@ -127,10 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 437814477227671076, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4011915144959580883, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -170,10 +166,6 @@ PrefabInstance:
     - target: {fileID: 4011915144959580883, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5420458442876382815, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8219115839218144083, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
       propertyPath: m_Name

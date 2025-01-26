@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System;
 using TMPro;
 using LeaderboardCreatorDemo;
+using Dan.Main;
 
 public class GameManager : MonoBehaviour
 {
@@ -137,11 +138,14 @@ public class GameManager : MonoBehaviour
         {
             //Load main menu and disable the gameplay UI
             SceneManager.LoadScene(0);
-            
         }
         else if(currentGameMode == GameMode.Regular)
         {
             //SceneManager.LoadScene(1);
+        }
+        else if(newGameMode == GameMode.End)
+        {
+            SendTimeToLeaderboard();
         }
 
         if (UIManager.Instance != null)
@@ -159,6 +163,14 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         ChangeGameMode(GameMode.MainMenu);
+        ResetPlayerForLeaderboard();
+        times.Clear();
+    }
+    private void ResetPlayerForLeaderboard()
+    {
+        //Reset the player to allow more entries to leaderboard.
+        LeaderboardCreator.ResetPlayer();
+        Debug.Log("PLAYER RESET");
     }
 
     public void SendTimeToLeaderboard()
@@ -169,6 +181,11 @@ public class GameManager : MonoBehaviour
     public void DisplayLeaderboard()
     {
         leaderboardManager.LoadEntries();
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
