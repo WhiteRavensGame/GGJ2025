@@ -4210,11 +4210,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1499301046646987628, guid: 652f37e9fcc8a124f9f7f45733d9e0f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6739
+      value: 1.6721
       objectReference: {fileID: 0}
     - target: {fileID: 1499301046646987628, guid: 652f37e9fcc8a124f9f7f45733d9e0f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.41
+      value: -0.443
       objectReference: {fileID: 0}
     - target: {fileID: 1499301046646987628, guid: 652f37e9fcc8a124f9f7f45733d9e0f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4251,6 +4251,10 @@ PrefabInstance:
     - target: {fileID: 4285422841603019263, guid: 652f37e9fcc8a124f9f7f45733d9e0f6, type: 3}
       propertyPath: m_Name
       value: Water_Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957811436775605876, guid: 652f37e9fcc8a124f9f7f45733d9e0f6, type: 3}
+      propertyPath: m_Size.x
+      value: 23.16074
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
