@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fc97e93d8ff45e8408cba472bc9d8746
+guid: b2d8d036be956ed4b916b54befee3eeb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1207976053700859250
-    second: sp-lvl02_0
+      213: -7425315953926231239
+    second: HighScoreScreen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sp-lvl02_0
+      name: HighScoreScreen_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 1666
+        height: 915
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 275940a12d793c010800000000000000
-      internalID: 1207976053700859250
+      spriteID: 93baf2d1b7af3f890800000000000000
+      internalID: -7425315953926231239
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      sp-lvl02_0: 1207976053700859250
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -777,9 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2147e075e97824ebeb70df8d932739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
-  width: 1920
-  height: 1080
+  targetAspectRatio: 1.7777778
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
