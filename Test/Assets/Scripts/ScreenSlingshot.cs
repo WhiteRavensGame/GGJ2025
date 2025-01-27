@@ -35,7 +35,7 @@ public class ScreenSlingshot : MonoBehaviour
     {
         if (playerReference.IsDead() || playerReference.HasWon())
         {
-            enableSlowMo = false;
+            EnableSlowMo(false);
             return;
         }
             
@@ -79,6 +79,21 @@ public class ScreenSlingshot : MonoBehaviour
 
     }
 
+    void EnableSlowMo(bool enable)
+    {
+        enableSlowMo = enable;
+        if(enableSlowMo)
+        {
+            Time.timeScale = 0.1f;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = .02f;
+        }
+    }
+
     void UpdateHookLinePosition()
     {
         lineRenderer.SetPosition(0, hook.position);
@@ -101,11 +116,7 @@ public class ScreenSlingshot : MonoBehaviour
         controllerParent.gameObject.SetActive(true);
         //rb.bodyType = RigidbodyType2D.Kinematic;
 
-        if(enableSlowMo)
-        {
-            Time.timeScale = 0.1f;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
-        }
+        EnableSlowMo(true);
             
     }
 
@@ -116,11 +127,7 @@ public class ScreenSlingshot : MonoBehaviour
         controllerParent.gameObject.SetActive(false);
         //rb.bodyType = defaultRbBodyType;
 
-        if (enableSlowMo)
-        {
-            Time.timeScale = 1;
-            Time.fixedDeltaTime = .02f;
-        }
+        EnableSlowMo(false);
 
         AudioManager.Instance.PlayJumpSFX();
             
