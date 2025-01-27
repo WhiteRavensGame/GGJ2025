@@ -52,7 +52,9 @@ public class Ball : MonoBehaviour
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
 
         //QQQQ : quick restart (death)
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) 
+            && GameManager.Instance.GetCurrentGameMode() != GameMode.MainMenu
+            && GameManager.Instance.GetCurrentGameMode() != GameMode.End)
         {
             GameManager.Instance.RestartLevel();
         }
