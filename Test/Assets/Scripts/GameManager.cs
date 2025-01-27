@@ -60,6 +60,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("added time: " + levelTime);
         times.Add(levelTime);
+
+        //Save to online leaderboard as well.
+        leaderboardManager.UploadEntryLevel(currentLevel, timeElapsed);
     }
 
     public float CalculateFinalTotalTime()

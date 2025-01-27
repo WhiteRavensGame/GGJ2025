@@ -93,5 +93,45 @@ namespace LeaderboardCreatorDemo
                     //LoadEntries();
             });
         }
+
+        //For Level Speedruns
+        public void UploadEntryLevel(int level, float time)
+        {
+            //Use the player name as the ID on the leaderboard as well.
+            string playerName = _usernameInputField.text;
+            LeaderboardCreator.SetUserGuid(playerName);
+
+            //allow two digits of milliseconds to be recorded
+            float finalScore = time * 100;
+
+            Debug.Log($"Saving: {playerName} , {finalScore} , {level}");
+
+            LeaderboardReference leaderboard = null;
+            switch(level)
+            {
+                case 1: leaderboard = Leaderboards.Level1; break;
+                case 2: leaderboard = Leaderboards.Level2; break;
+                case 3: leaderboard = Leaderboards.Level3; break;
+                case 4: leaderboard = Leaderboards.Level4; break;
+                case 5: leaderboard = Leaderboards.Level5; break;
+                case 6: leaderboard = Leaderboards.Level6; break;
+                case 7: leaderboard = Leaderboards.Level7; break;
+                case 8: leaderboard = Leaderboards.Level8; break;
+            }
+
+            if(leaderboard == null)
+            {
+                Debug.LogWarning("Warning, can't save data. No leaderboard found for level " + level);
+                return;
+            }
+
+            leaderboard.UploadNewEntry(playerName, Mathf.FloorToInt(finalScore), isSuccessful =>
+            {
+                if (isSuccessful)
+                    Debug.Log("Save successful. Score saved: " + Mathf.FloorToInt(finalScore));
+                //LoadEntries();
+            });
+
+        }
     }
 }
