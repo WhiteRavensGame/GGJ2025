@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a4f69e753d3188429254ce671fd477c
+guid: 4b3c01f9c76f9fc469eb7df1bdd645bc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -209297477754786069
-    second: sp_thumbnail copy_0
+      213: 7091615984918839392
+    second: sp-main_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sp_thumbnail copy_0
+      name: sp-main_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
-        height: 600
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bee6a0a8d0d681df0800000000000000
-      internalID: -209297477754786069
+      spriteID: 060c1905a2b7a6260800000000000000
+      internalID: 7091615984918839392
       vertices: []
       indices: 
       edges: []
@@ -160,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      sp_thumbnail copy_0: -209297477754786069
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
