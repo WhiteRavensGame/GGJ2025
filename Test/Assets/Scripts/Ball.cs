@@ -169,6 +169,11 @@ public class Ball : MonoBehaviour
             GameManager.Instance.ChangeGameMode(GameMode.Regular);
         }
 
+        if (collision.tag == "WaterZone")
+        {
+            AudioManager.Instance.PlayWaterSplashSFX();
+        }
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
