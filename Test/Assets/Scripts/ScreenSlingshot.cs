@@ -17,7 +17,6 @@ public class ScreenSlingshot : MonoBehaviour
     public float launchForceMultiplier = 10;
     public float slingEnergyRequired = 25;
 
-    [Header("Debug/TEMP")]
     public bool enableSlowMo;
 
     private Vector2 cursorLoc = Vector2.zero;
@@ -35,7 +34,11 @@ public class ScreenSlingshot : MonoBehaviour
     void Update()
     {
         if (playerReference.IsDead() || playerReference.HasWon())
+        {
+            enableSlowMo = false;
             return;
+        }
+            
 
         if(Input.GetMouseButtonDown(0))
         {
@@ -118,6 +121,8 @@ public class ScreenSlingshot : MonoBehaviour
             Time.timeScale = 1;
             Time.fixedDeltaTime = .02f;
         }
+
+        AudioManager.Instance.PlayJumpSFX();
             
     }
 

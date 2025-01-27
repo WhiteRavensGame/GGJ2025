@@ -106,6 +106,7 @@ public class Ball : MonoBehaviour
         //Dead. Respawn.
         isDead = true;
         animator.Play("Die");
+        AudioManager.Instance.PlayDeathSFX();
         rb.linearVelocity = Vector3.zero;
         rb.freezeRotation = true;
         rb.bodyType = RigidbodyType2D.Kinematic;
@@ -151,12 +152,15 @@ public class Ball : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
             finishedLevel = true;
             animator.Play("Victory");
+            AudioManager.Instance.PlayYaySFX();
             transform.eulerAngles = Vector3.zero;
+            
         }
         else if (collision.tag == "BubblePowerup")
         {
             ChangeBallMode(BallMode.Bubbled);
             collision.gameObject.SetActive(false);
+            AudioManager.Instance.PlaySparkleSFX();
         }
 
         else if (collision.tag == "MainMenuTrigger")
