@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip deathAudioClip;
     public AudioClip bubblePopAudioClip;
     public AudioClip sparkleClip;
+    public AudioClip waterSplashClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +42,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySparkleSFX()
     {
         sfxSource.PlayOneShot(sparkleClip);
+    }
+    public void PlayWaterSplashSFX()
+    {
+        sfxSource.PlayOneShot(waterSplashClip);
     }
 
 }
