@@ -51,14 +51,10 @@ public class Ball : MonoBehaviour
         
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
 
-        //QQQQ : testing new levels
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        //QQQQ : quick restart (death)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            ChangeBallMode(BallMode.Small);
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeBallMode(BallMode.Bubbled);
+            GameManager.Instance.RestartLevel();
         }
         
     }

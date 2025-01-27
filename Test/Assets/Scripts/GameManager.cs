@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 
     public void DisplayLeaderboard()
     {
-        leaderboardManager.LoadEntries();
+        leaderboardManager.DisplaySelectedLeaderboard();
     }
 
     public void ChangePlayerName(string newName)
