@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private int currentLevel = 0;
 
     public List<float> times;
+    public List<float> bestTimes; 
 
     public string playerName;
 
