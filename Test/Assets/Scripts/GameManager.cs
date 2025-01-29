@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
         if (!start)
         {
             Debug.Log("END TIME: " + timeElapsed);
-
         }
     }
 
@@ -116,7 +115,8 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.DisplayLevelCompleteScreen(true, timeElapsed);
         else
             UIManager.Instance.DisplayLevelCompleteScreen(true, CalculateFinalTotalTime());
-        
+
+        AnalyticsManager.Instance.RecordLevelClear(currentLevel, timeElapsed);
     }
 
     public void RestartLevel()
@@ -151,8 +151,10 @@ public class GameManager : MonoBehaviour
 
             //TODO: Have a different trigger for officially starting the time (first click?)
             StartTimer(true, true);
+            AnalyticsManager.Instance.RecordLevelStart(currentLevel);
+
         }
-        
+
     }
 
     public string ConvertFloatTimeToString(float time)

@@ -4187,6 +4187,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957820186131981485, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
+      propertyPath: isStaging
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957820186131981485, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
+      propertyPath: displayDebugLogs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4011915144959580883, guid: 2dca11ad4c3a24f4bb09c1e4d037b880, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
