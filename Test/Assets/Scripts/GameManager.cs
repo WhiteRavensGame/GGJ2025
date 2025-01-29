@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
                 ChangeGameMode(GameMode.MainMenu);
             else
                 ChangeGameMode(GameMode.Regular);
+
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
         } 
         else Destroy(this.gameObject);
 
@@ -54,6 +56,11 @@ public class GameManager : MonoBehaviour
 
         //QQQQ ?
         //StartTimer(true);
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
     }
 
     void SaveLevelTime(float levelTime)
@@ -172,10 +179,6 @@ public class GameManager : MonoBehaviour
         else if(newGameMode == GameMode.End)
         {
             SendTimeToLeaderboard();
-        }
-        else if(newGameMode == GameMode.SpeedrunLevel)
-        {
-            //SceneManager.LoadScene(currentLevel);
         }
 
         if (UIManager.Instance != null)

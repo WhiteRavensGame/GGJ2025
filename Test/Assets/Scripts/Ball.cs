@@ -109,6 +109,10 @@ public class Ball : MonoBehaviour
         rb.freezeRotation = true;
         rb.bodyType = RigidbodyType2D.Kinematic;
         transform.eulerAngles = Vector3.zero;
+
+        //Record analytics for death
+        AnalyticsManager.Instance.RecordDeath(GameManager.Instance.GetCurrentLevel(), transform.position.x, transform.position.y);
+
         GameManager.Instance.RestartLevel();
     }
 

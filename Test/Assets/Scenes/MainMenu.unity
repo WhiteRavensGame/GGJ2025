@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 290032617}
   - component: {fileID: 290032616}
   m_Layer: 0
-  m_Name: TestTitleScreen
+  m_Name: TitleScreenImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4245,6 +4245,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1719375270}
   - {fileID: 149614078}
+  - {fileID: 290032617}
   - {fileID: 431345730}
   - {fileID: 2062741903}
   - {fileID: 1569648168}
@@ -4253,4 +4254,3 @@ SceneRoots:
   - {fileID: 271706743}
   - {fileID: 8825423411749998193}
   - {fileID: 1152586386}
-  - {fileID: 290032617}
