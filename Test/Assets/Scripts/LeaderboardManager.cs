@@ -15,8 +15,10 @@ namespace LeaderboardCreatorDemo
         [SerializeField] private TMP_Text[] _entryTextObjects;
         [SerializeField] private TMP_InputField _usernameInputField;
 
+        [Header("UI")]
         [SerializeField] private Transform leaderboardEntryGrid;
         [SerializeField] private GameObject leaderboardEntryPrefab;
+        [SerializeField] private GameObject leaderboardLoadingPanel;
         [SerializeField] private TMP_Dropdown dropdownCategory;
 
         private List<GameObject> leaderboardEntries = new List<GameObject>();
@@ -48,6 +50,8 @@ namespace LeaderboardCreatorDemo
             }
             leaderboardEntries.Clear();
 
+            DisplayLeaderboardLoadingPanel(true);
+
             Leaderboards.TestLeaderboard.GetEntries(entries =>
             {
                 int i = 0;
@@ -69,13 +73,8 @@ namespace LeaderboardCreatorDemo
                     if (i > totalRankLimit) break;
                 }
 
+                DisplayLeaderboardLoadingPanel(false);
 
-                //foreach (var t in _entryTextObjects)
-                //    t.text = "";
-
-                //var length = Mathf.Min(_entryTextObjects.Length, entries.Length);
-                //for (int i = 0; i < length; i++)
-                //    _entryTextObjects[i].text = $"{entries[i].Rank}. {entries[i].Username} - {entries[i].Score}";
             });
         }
 
@@ -87,6 +86,8 @@ namespace LeaderboardCreatorDemo
                 Destroy(entry.gameObject);
             }
             leaderboardEntries.Clear();
+
+            DisplayLeaderboardLoadingPanel(true);
 
             LeaderboardReference leaderboard = GetLeaderboardByLevel(level);
 
@@ -117,9 +118,15 @@ namespace LeaderboardCreatorDemo
                     if (i > totalRankLimit) break;
                 }
 
+                DisplayLeaderboardLoadingPanel(false);
 
- 
             });
+        }
+
+        public void DisplayLeaderboardLoadingPanel(bool show)
+        {
+            leaderboardLoadingPanel.SetActive(show);
+            dropdownCategory.interactable = !show;
         }
 
         public void UploadEntry()
