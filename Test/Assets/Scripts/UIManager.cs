@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [Header("Main Menu HUD")]
     public GameObject mainMenuPanel;
     public TMP_InputField playerNameField;
+    public TMP_Text versionText;
     
 
     [Header("Level Complete Screen")]
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            versionText.text = GameManager.Instance.GetDevEnvironment().ToString() + " v" + Application.version;
             GameMode mode = GameManager.Instance.GetCurrentGameMode();
 
             //just startup adapating to what level you spawn in.

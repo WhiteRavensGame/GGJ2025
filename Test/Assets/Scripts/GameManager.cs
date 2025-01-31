@@ -9,23 +9,27 @@ using Dan.Main;
 
 public class GameManager : MonoBehaviour
 {
-    //References
+    [Header("References")]
     public static GameManager Instance;
-    public TextMeshProUGUI timeField;
-    public TMP_InputField nameField;
+    [SerializeField] private TextMeshProUGUI timeField;
+    [SerializeField] private TMP_InputField nameField;
+    [SerializeField] private LeaderboardManager leaderboardManager;
 
+    [Header("Time Tracker")]
     public float timeElapsed = 0;
     private bool timerRunning = false;
     private int currentLevel = 0;
 
-    public List<float> times;
-    public List<float> bestTimes; 
+    private List<float> times;
+    private List<float> bestTimes; 
 
     public string playerName;
     public bool displayDeathSpots;
 
-    [SerializeField] private GameMode currentGameMode = GameMode.MainMenu;
-    [SerializeField] private LeaderboardManager leaderboardManager;
+    public DevEnvironment devEnvironment;
+
+    private GameMode currentGameMode = GameMode.MainMenu;
+    
 
     void Awake()
     {
@@ -259,6 +263,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("player name changed to " + playerName);
     }
 
+    public DevEnvironment GetDevEnvironment()
+    {
+        return devEnvironment;
+    }
+
 }
 
 public enum GameMode
@@ -267,4 +276,9 @@ public enum GameMode
     Regular,
     SpeedrunLevel,
     End
+}
+public enum DevEnvironment
+{ 
+    Staging,
+    Production
 }

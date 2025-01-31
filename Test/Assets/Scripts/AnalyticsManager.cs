@@ -19,13 +19,13 @@ public class AnalyticsManager : MonoBehaviour
 
             //Initializes analytics to start gathering play data.
             var options = new InitializationOptions();
-            if(isStaging)
+            if(GameManager.Instance.GetDevEnvironment() == DevEnvironment.Staging)
             {
                 options.SetEnvironmentName("staging");
                 await UnityServices.InitializeAsync(options);
                 AnalyticsService.Instance.StartDataCollection();
             }
-            else
+            else if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Production)
             {
                 options.SetEnvironmentName("production");
                 
