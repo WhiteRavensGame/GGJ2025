@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public List<float> bestTimes; 
 
     public string playerName;
+    public bool displayDeathSpots;
 
     [SerializeField] private GameMode currentGameMode = GameMode.MainMenu;
     [SerializeField] private LeaderboardManager leaderboardManager;

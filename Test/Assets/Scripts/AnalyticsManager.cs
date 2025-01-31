@@ -11,10 +11,6 @@ public class AnalyticsManager : MonoBehaviour
     public bool isStaging; 
     public bool displayDebugLogs;
     
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Awake()
     {
         if (Instance == null)

@@ -9,8 +9,14 @@ public class CSVReader : MonoBehaviour
 
     void Start()
     {
-        string filePath = Path.Combine(Application.dataPath, "ExampleHeatmap_Points.csv");
-        ReadCSV(filePath);
+        if (!GameManager.Instance.displayDeathSpots)
+            Destroy(this.gameObject);
+        else
+        {
+            //string filePath = Path.Combine(Application.dataPath, "ExampleHeatmap_Points.csv");
+            string filePath = Path.Combine(Application.dataPath, "DeathPoints.csv");
+            ReadCSV(filePath);
+        }
     }
 
     void ReadCSV(string filePath)
