@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
     private bool timerRunning = false;
     private int currentLevel = 0;
 
-    private List<float> times;
-    private List<float> bestTimes; 
+    [SerializeField] private List<float> times;
+    [SerializeField] private List<float> bestTimes;
+    private float bestFullRunTime;
 
     public string playerName;
     public bool displayDeathSpots;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             Debug.Log("SDFSDF");
             times = new List<float>();
+            bestTimes = new List<float>();
 
             if (SceneManager.GetActiveScene().name == "MainMenu")
                 ChangeGameMode(GameMode.MainMenu);
@@ -59,9 +61,78 @@ public class GameManager : MonoBehaviour
             nameField.text = savedName.ToString();
         }
         Debug.Log(savedName);
+        
+        InitializeLocalBestTimes();
+    }
 
-        //QQQQ ?
-        //StartTimer(true);
+    public void InitializeLocalBestTimes()
+    {
+        //Levels
+        for(int i = 1; i <= 8; i++)
+        {
+            float f = PlayerPrefs.GetFloat(GetRecordLevelName(i));
+            if (f == 0) bestTimes.Add(Mathf.Infinity);
+            else bestTimes.Add(f); 
+        }
+
+        //Full run
+        float fullRunTime = PlayerPrefs.GetFloat("FullRunRecord");
+        if (fullRunTime == 0) bestFullRunTime = Mathf.Infinity;
+        else bestFullRunTime = fullRunTime;
+    }
+
+    public float GetLocalRecordTime(int level)
+    {
+        int levelIndex = level - 1;
+        if (levelIndex < bestTimes.Count)
+        {
+            return bestTimes[levelIndex];
+        }
+        else
+        {
+            Debug.LogWarning("Level out of bounds in Record List");
+            return Mathf.Infinity;
+        }
+    }
+    public bool CheckNewRecordLocalLevelTime(int level, float timeAchieved)
+    {
+        int levelIndex = level - 1;
+        if (bestTimes[levelIndex] <= timeAchieved)
+            return false;
+
+        bestTimes[levelIndex] = timeAchieved;
+        PlayerPrefs.SetFloat(GetRecordLevelName(level), timeAchieved);
+        return true;
+    }
+    public bool CheckNewRecordFullRunTime(float timeAchieved)
+    {
+        if (bestFullRunTime <= timeAchieved)
+            return false;
+
+        bestFullRunTime = timeAchieved;
+        PlayerPrefs.SetFloat("FullRunRecord", timeAchieved);
+        return true;
+    }
+
+    public float GetFullRunLocalRecord()
+    {
+        return bestFullRunTime;
+    }
+
+    public string GetRecordLevelName(int level)
+    {
+        return ("Record_Level" + level);
+    }
+    public void ResetLocalTimes()
+    {
+        for(int i = 0; i < bestTimes.Count; i++)
+        {
+            bestTimes[i] = Mathf.Infinity;
+            PlayerPrefs.SetFloat(GetRecordLevelName(i+1), bestTimes[i]);
+        }
+
+        bestFullRunTime = Mathf.Infinity;
+        PlayerPrefs.SetFloat("FullRunRecord", bestFullRunTime);
     }
 
     public int GetCurrentLevel()
@@ -73,6 +144,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("added time: " + levelTime);
         times.Add(levelTime);
+
+        //Save to local best times
+        CheckNewRecordLocalLevelTime(currentLevel, levelTime);
 
         //Save to online leaderboard as well.
         leaderboardManager.UploadEntryLevel(currentLevel, timeElapsed);
@@ -96,7 +170,12 @@ public class GameManager : MonoBehaviour
 
         if (timerRunning)
         {
+            //slowdown affected by time
+            //timeElapsed += Time.deltaTime;
+
+            //slowdown unaffected by time
             timeElapsed += Time.unscaledDeltaTime;
+
             timeField.text = ConvertFloatTimeToString(timeElapsed);
         }
     }
@@ -279,6 +358,7 @@ public enum GameMode
 }
 public enum DevEnvironment
 { 
-    Staging,
+    Development = -1,
+    Staging = 0,
     Production
 }

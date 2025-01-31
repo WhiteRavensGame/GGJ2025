@@ -12,6 +12,11 @@ public class EndScreenUI : MonoBehaviour
     {
         float totalClearTime = GameManager.Instance.CalculateFinalTotalTime();
         textClearTime.text = GameManager.Instance.ConvertFloatTimeToString(totalClearTime);
+        bool beatRecord = GameManager.Instance.CheckNewRecordFullRunTime(totalClearTime);
+        if(beatRecord)
+        {
+            //Display new record?
+        }
     }
 
     //Button Events

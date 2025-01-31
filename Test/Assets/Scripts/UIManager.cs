@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using LeaderboardCreatorDemo;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,11 +23,14 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuPanel;
     public TMP_InputField playerNameField;
     public TMP_Text versionText;
-    
+    public TMP_Text localRecordText;
+    public TMP_Text[] levelRecordsText;
+
 
     [Header("Level Complete Screen")]
     public GameObject levelCompleteScreen;
     public GameObject levelSpeedrunButtonsPanel;
+    public GameObject newPersonalBestText;
     public TextMeshProUGUI levelCompleteTimeText;
     public Animator levelCompleteAnimator;
 
@@ -49,8 +53,21 @@ public class UIManager : MonoBehaviour
                 mainTimerText.gameObject.SetActive(true);
             }
 
+            ReloadLevelRecordTimes();
+
         }
         else Destroy(this.gameObject);
+    }
+
+    public void ReloadLevelRecordTimes()
+    {
+        for(int i = 0; i < levelRecordsText.Length; i++) 
+        {
+            float f = GameManager.Instance.GetLocalRecordTime(i + 1);
+            if (f == Mathf.Infinity) levelRecordsText[i].text = "---";
+            else levelRecordsText[i].text = GameManager.Instance.ConvertFloatTimeToString(f);
+
+        }
     }
 
     public void DisplayLevelCompleteScreen(bool show, float timeFinish = 0)
@@ -181,6 +198,13 @@ public class UIManager : MonoBehaviour
         if(gameMode == GameMode.MainMenu)
         {
             mainMenuPanel.gameObject.SetActive(true);
+            float fullRunRecord = GameManager.Instance.GetFullRunLocalRecord();
+            if (fullRunRecord == Mathf.Infinity) localRecordText.gameObject.SetActive(false);
+            else
+            {
+                localRecordText.gameObject.SetActive(true);
+                localRecordText.text = "Local Record: " + GameManager.Instance.ConvertFloatTimeToString(fullRunRecord);
+            }
         }
         else
         {
@@ -201,13 +225,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerStaminaDisplay(float min, float max, float danger = 0.33f)
+    public void UpdatePlayerStaminaDisplay(float min, float max, float danger = 0.33f, float warning = 0.66f)
     {
         float percent = min / max;
         playerStaminaBar.value = percent;
 
         if (playerStaminaBar.value <= danger)
             playerStaminaBarColor.color = Color.red;
+        else if (playerStaminaBar.value <= warning)
+            playerStaminaBarColor.color = Color.yellow;
         else
             playerStaminaBarColor.color = Color.green;
 

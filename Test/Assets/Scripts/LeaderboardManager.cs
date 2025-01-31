@@ -124,6 +124,9 @@ namespace LeaderboardCreatorDemo
 
         public void UploadEntry()
         {
+            if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+                return;
+
             //Use the player name as the ID on the leaderboard as well.
             string playerName = _usernameInputField.text;
             LeaderboardCreator.SetUserGuid(playerName);
@@ -143,6 +146,9 @@ namespace LeaderboardCreatorDemo
         //For Level Speedruns
         public void UploadEntryLevel(int level, float time)
         {
+            if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+                return;
+
             //Use the player name as the ID on the leaderboard as well.
             string playerName = _usernameInputField.text;
             LeaderboardCreator.SetUserGuid(playerName);

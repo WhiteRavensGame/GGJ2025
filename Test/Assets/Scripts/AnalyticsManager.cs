@@ -50,6 +50,9 @@ public class AnalyticsManager : MonoBehaviour
 
     public void RecordDeath(int level, float deathX, float deathY)
     {
+        if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+            return;
+
         //ignore events when coming from individual speedruns (don't check time grinders)
         if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
             return;
@@ -68,6 +71,9 @@ public class AnalyticsManager : MonoBehaviour
 
     public void RecordLevelStart(int level)
     {
+        if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+            return;
+
         //ignore events when coming from individual speedruns (don't check time grinders)
         if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
             return;
@@ -85,6 +91,9 @@ public class AnalyticsManager : MonoBehaviour
 
     public void RecordLevelClear(int level, float time)
     {
+        if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+            return;
+
         //ignore events when coming from individual speedruns (don't check time grinders)
         if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
             return;
