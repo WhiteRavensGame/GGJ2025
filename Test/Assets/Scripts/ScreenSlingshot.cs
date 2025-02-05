@@ -1,5 +1,6 @@
 using System.Net;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class ScreenSlingshot : MonoBehaviour
@@ -18,6 +19,7 @@ public class ScreenSlingshot : MonoBehaviour
     public float slingEnergyRequired = 25;
 
     public bool enableSlowMo;
+    public CursorLockMode mouseControlLockMode;
 
     private Vector2 cursorLoc = Vector2.zero;
     private bool isPressed = false;
@@ -28,6 +30,9 @@ public class ScreenSlingshot : MonoBehaviour
     {
         UpdateHookLinePosition();
         playerReference = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
+
+        //Switch Mouse Control mode.
+        Cursor.lockState = mouseControlLockMode;        
     }
 
     // Update is called once per frame
@@ -43,6 +48,7 @@ public class ScreenSlingshot : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             MousePressed();
+            cursorLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if(Input.GetMouseButtonUp(0) && isPressed)
         {
@@ -51,22 +57,44 @@ public class ScreenSlingshot : MonoBehaviour
 
         if(isPressed)
         {
-            cursorLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            //QUICK WAY TO SIMULATE PHYSICS (infinite pull)
-            //if (Vector2.Distance(cursorLoc, hook.position) <= 3)
-            //mouseLoc.position = cursorLoc;
-
-            //LIMITED PULL (CAP PULL LENGTH)
             Vector2 hookPos = hook.position;
-            Vector2 direction = cursorLoc - hookPos;
-            float dist = direction.magnitude;
-            if (dist > maxPullDistance)
-                direction = direction.normalized * maxPullDistance;
 
-            Vector2 constrainedPoint = hookPos + direction;
+            if(Cursor.lockState == CursorLockMode.None || Cursor.lockState == CursorLockMode.Confined)
+            {
+                cursorLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //QUICK WAY TO SIMULATE PHYSICS (infinite pull)
+                //if (Vector2.Distance(cursorLoc, hook.position) <= 3)
+                //mouseLoc.position = cursorLoc;
 
-            mouseLoc.position = constrainedPoint;
+                Vector2 direction = cursorLoc - hookPos;
+                float dist = direction.magnitude;
+                if (dist > maxPullDistance)
+                    direction = direction.normalized * maxPullDistance;
+
+                Vector2 constrainedPoint = hookPos + direction;
+
+                mouseLoc.position = constrainedPoint;
+                Debug.Log(mouseLoc.position);
+                Debug.Log(Input.mousePositionDelta);
+
+
+            }
+            else if(Cursor.lockState == CursorLockMode.Locked)
+            {
+                cursorLoc += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+                Vector2 direction = cursorLoc - hookPos;
+                float dist = direction.magnitude;
+                if (dist > maxPullDistance)
+                    direction = direction.normalized * maxPullDistance;
+                Vector2 constrainedPoint = hookPos + direction;
+
+                mouseLoc.position = constrainedPoint;
+                //mouseLoc.position = cursorLoc;
+                Debug.Log(mouseLoc.position + "," + cursorLoc);
+
+            }
+
 
             lineRenderer.SetPosition(1, mouseLoc.position);
 
