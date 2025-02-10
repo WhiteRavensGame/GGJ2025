@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject levelCompleteScreen;
     [SerializeField] private GameObject levelSpeedrunButtonsPanel;
     [SerializeField] private GameObject newPersonalBestText;
+    [SerializeField] private GameObject levelLapPanel;
+    [SerializeField] private TextMeshProUGUI levelLapText;
     [SerializeField] private TextMeshProUGUI levelCompleteTimeText;
     [SerializeField] private Animator levelCompleteAnimator;
 
@@ -79,9 +81,15 @@ public class UIManager : MonoBehaviour
         {
             //Hide the buttons if doing level speedruns.
             if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
-                levelSpeedrunButtonsPanel.SetActive(true);
-            else
+            {
                 levelSpeedrunButtonsPanel.SetActive(false);
+                levelLapPanel.SetActive(false);
+            }
+            else
+            {
+                levelSpeedrunButtonsPanel.SetActive(true);
+                levelLapPanel.SetActive(true);
+            }
 
             StartCoroutine(LoadNextLevel(timeFinish));
         }
@@ -89,7 +97,13 @@ public class UIManager : MonoBehaviour
         {
             levelCompleteScreen.SetActive(show);
             levelCompleteTimeText.text = "";
+            levelLapText.text = "";
         }
+    }
+
+    public void ShowLevelCompleteNewBestTime(bool show)
+    {
+        newPersonalBestText.SetActive(show);
     }
 
     public void ShowOptionsMenu(bool show)
@@ -117,16 +131,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    IEnumerator DisplayTimerDuringPause()
-    {
-        while(true)
-        {
-            mainTimerText.text = GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
-            mainTimerText.text = "IE " + GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
-            Debug.Log("IE " + GameManager.Instance.timeElapsed);
-            yield return new WaitForSecondsRealtime(0.02f);
-        }
-    }
+    //Doesn't work even Timescale is 0. Archived.
+    //IEnumerator DisplayTimerDuringPause()
+    //{
+    //    while(true)
+    //    {
+    //        mainTimerText.text = GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
+    //        mainTimerText.text = "IE " + GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
+    //        Debug.Log("IE " + GameManager.Instance.timeElapsed);
+    //        yield return new WaitForSecondsRealtime(0.02f);
+    //    }
+    //}
 
     public void StartNewGame()
     {
@@ -200,9 +215,11 @@ public class UIManager : MonoBehaviour
         {
             //Let the player digest the win animation first. 
             yield return new WaitForSeconds(1f);
-
+            
             string displayTime = GameManager.Instance.ConvertFloatTimeToString(timeFinish);
             levelCompleteTimeText.text = displayTime;
+            float levelTime = GameManager.Instance.GetTimeElapsed();
+            levelLapText.text = $"+{GameManager.Instance.ConvertFloatTimeToString(levelTime)}";
             levelCompleteScreen.SetActive(true);
             levelCompleteAnimator.Play("WinAnimateIn");
 

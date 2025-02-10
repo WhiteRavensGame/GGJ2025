@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LeaderboardManager leaderboardManager;
 
     [Header("Time Tracker")]
-    public float timeElapsed = 0;
+    private float timeElapsed = 0;
     private bool timerRunning = false;
     private int currentLevel = 0;
 
@@ -93,14 +93,21 @@ public class GameManager : MonoBehaviour
             return Mathf.Infinity;
         }
     }
+    public float GetTimeThisLevel()
+    {
+        int previousLevel = currentLevel - 1;
+        if (previousLevel < 0)
+            return timeElapsed;
+        else
+            return (timeElapsed - times[previousLevel]);
+    }
+
     public bool CheckNewRecordLocalLevelTime(int level, float timeAchieved)
     {
         int levelIndex = level - 1;
         if (bestTimes[levelIndex] <= timeAchieved)
             return false;
 
-        bestTimes[levelIndex] = timeAchieved;
-        PlayerPrefs.SetFloat(GetRecordLevelName(level), timeAchieved);
         return true;
     }
     public bool CheckNewRecordFullRunTime(float timeAchieved)
@@ -144,11 +151,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("added time: " + levelTime);
         times.Add(levelTime);
 
-        //Save to local best times
-        CheckNewRecordLocalLevelTime(currentLevel, levelTime);
-
         //Save to online leaderboard as well.
         leaderboardManager.UploadEntryLevel(currentLevel, timeElapsed);
+
+        //Save to local best times
+        bool newRecord = CheckNewRecordLocalLevelTime(currentLevel, levelTime);
+        UIManager.Instance.ShowLevelCompleteNewBestTime(newRecord);
+        if (newRecord)
+        {
+            bestTimes[currentLevel-1] = levelTime;
+            PlayerPrefs.SetFloat(GetRecordLevelName(currentLevel), levelTime);
+        }
+
     }
 
     public float CalculateFinalTotalTime()
@@ -192,6 +206,10 @@ public class GameManager : MonoBehaviour
     {
         timerRunning = false;
         Debug.Log("END TIME: " + timeElapsed);
+    }
+    public float GetTimeElapsed()
+    {
+        return timeElapsed;
     }
 
 
