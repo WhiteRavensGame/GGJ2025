@@ -51,12 +51,23 @@ public class Ball : MonoBehaviour
         
         UIManager.Instance.UpdatePlayerStaminaDisplay(currentEnergy, maxEnergy);
 
-        //QQQQ : quick restart (death)
-        if (Input.GetKeyDown(KeyCode.R) 
-            && GameManager.Instance.GetCurrentGameMode() != GameMode.MainMenu
-            && GameManager.Instance.GetCurrentGameMode() != GameMode.End)
+        //QQQQ : hotkeys for quick restart/main menu
+        if(GameManager.Instance.GetCurrentGameMode() != GameMode.MainMenu
+            && GameManager.Instance.GetCurrentGameMode() != GameMode.End
+            && !HasWon() )
         {
-            GameManager.Instance.RestartLevel();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                DisableBallMovement();
+                UIManager.Instance.ShowOptionsMenu(false); //force close Options Menu
+                GameManager.Instance.RestartLevel();
+            }
+            else if(Input.GetKeyDown(KeyCode.X))
+            {
+                DisableBallMovement();
+                UIManager.Instance.ShowOptionsMenu(false); //force close Options Menu
+                UIManager.Instance.OptionsMainMenuButtonPressed();
+            }
         }
         
     }
@@ -145,18 +156,33 @@ public class Ball : MonoBehaviour
         return finishedLevel;
     }
 
+    public bool IsPlaying()
+    {
+        return (!isDead && !finishedLevel);
+    }
+
+    public void DisableBallMovement()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    private void ProcessWin()
+    {
+        GameManager.Instance.CompleteLevel();
+        
+        rb.bodyType = RigidbodyType2D.Static;
+        finishedLevel = true;
+        animator.Play("Victory");
+        AudioManager.Instance.PlayYaySFX();
+        transform.eulerAngles = Vector3.zero;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Finish")
         {
-            GameManager.Instance.CompleteLevel();
             collision.gameObject.SetActive(false);
-            rb.bodyType = RigidbodyType2D.Static;
-            finishedLevel = true;
-            animator.Play("Victory");
-            AudioManager.Instance.PlayYaySFX();
-            transform.eulerAngles = Vector3.zero;
-            
+            ProcessWin();
         }
         else if (collision.tag == "BubblePowerup")
         {

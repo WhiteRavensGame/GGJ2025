@@ -2,6 +2,8 @@ using System.Net;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ScreenSlingshot : MonoBehaviour
 {
@@ -47,6 +49,9 @@ public class ScreenSlingshot : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+            //don't perform a pull if the player is pressing a button.
+            if (IsPointerOverUIButton()) return;
+
             MousePressed();
             cursorLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
@@ -74,8 +79,8 @@ public class ScreenSlingshot : MonoBehaviour
                 Vector2 constrainedPoint = hookPos + direction;
 
                 mouseLoc.position = constrainedPoint;
-                Debug.Log(mouseLoc.position);
-                Debug.Log(Input.mousePositionDelta);
+                //Debug.Log(mouseLoc.position);
+                //Debug.Log(Input.mousePositionDelta);
 
 
             }
@@ -105,6 +110,27 @@ public class ScreenSlingshot : MonoBehaviour
             //}
         }
 
+    }
+
+    private bool IsPointerOverUIButton()
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        var results = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, results);
+
+        foreach (var result in results)
+        {
+            if (result.gameObject.GetComponent<Button>() != null)
+            {
+                return true; // Pointer is over a button
+            }
+        }
+
+        return false;
     }
 
     void EnableSlowMo(bool enable)

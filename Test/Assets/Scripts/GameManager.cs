@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
-            Debug.Log("SDFSDF");
             times = new List<float>();
             bestTimes = new List<float>();
 
@@ -180,21 +179,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartTimer(bool start, bool resetTimer = false)
+    private void StartTimer()
     {
-        if (resetTimer && start) timeElapsed = 0;
-
-        timerRunning = start;
-        if (!start)
-        {
-            Debug.Log("END TIME: " + timeElapsed);
-        }
+        timerRunning = true;
     }
+
+    private void ResetTimer()
+    {
+        timeElapsed = 0;
+    }
+    private void StopTimer()
+    {
+        timerRunning = false;
+        Debug.Log("END TIME: " + timeElapsed);
+    }
+
+
 
     public void CompleteLevel()
     {
-        StartTimer(false);
+        StopTimer();
         SaveLevelTime(timeElapsed);
+        UIManager.Instance.ShowOptionsMenu(false);
 
         if(currentGameMode == GameMode.SpeedrunLevel)
             UIManager.Instance.DisplayLevelCompleteScreen(true, timeElapsed);
@@ -215,7 +221,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentLevel);
 
         if (currentGameMode == GameMode.SpeedrunLevel)
-            StartTimer(true, true);
+        {
+            ResetTimer();
+            StartTimer();
+        }
     }
 
     public void LoadNextLevel()
@@ -235,7 +244,8 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(nextScene);
 
             //TODO: Have a different trigger for officially starting the time (first click?)
-            StartTimer(true, true);
+            ResetTimer();
+            StartTimer();
             AnalyticsManager.Instance.RecordLevelStart(currentLevel);
 
         }
@@ -304,6 +314,8 @@ public class GameManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        StopTimer();
+        ResetTimer();
         ChangeGameMode(GameMode.MainMenu);
         ResetPlayerForLeaderboard();
         times.Clear();

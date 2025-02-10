@@ -12,31 +12,33 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Main HUD")]
-    public GameObject mainTimer;
-    public TextMeshProUGUI mainTimerText;
-    public GameObject optionsButton;
-    public Slider playerStaminaBar;
-    public Image playerStaminaBarColor;
-    public Animator loadingAnimator;
+    [SerializeField] private GameObject mainTimer;
+    [SerializeField] private TextMeshProUGUI mainTimerText;
+    [SerializeField] private GameObject optionsButton;
+    [SerializeField] private Slider playerStaminaBar;
+    [SerializeField] private Image playerStaminaBarColor;
+    [SerializeField] private Animator loadingAnimator;
 
     [Header("Main Menu HUD")]
-    public GameObject mainMenuPanel;
-    public TMP_InputField playerNameField;
-    public TMP_Text versionText;
-    public TMP_Text localRecordText;
-    public TMP_Text[] levelRecordsText;
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private TMP_InputField playerNameField;
+    [SerializeField] private TMP_Text versionText;
+    [SerializeField] private TMP_Text localRecordText;
+    [SerializeField] private TMP_Text[] levelRecordsText;
 
+    [Header("Options HUD")]
+    [SerializeField] private GameObject optionsPanel;
 
     [Header("Level Complete Screen")]
-    public GameObject levelCompleteScreen;
-    public GameObject levelSpeedrunButtonsPanel;
-    public GameObject newPersonalBestText;
-    public TextMeshProUGUI levelCompleteTimeText;
-    public Animator levelCompleteAnimator;
+    [SerializeField] private GameObject levelCompleteScreen;
+    [SerializeField] private GameObject levelSpeedrunButtonsPanel;
+    [SerializeField] private GameObject newPersonalBestText;
+    [SerializeField] private TextMeshProUGUI levelCompleteTimeText;
+    [SerializeField] private Animator levelCompleteAnimator;
 
     [Header("End Game UI")]
-    public GameObject endGamePanel;
-    public GameObject leaderboardPanel;
+    [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject leaderboardPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -90,11 +92,53 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowOptionsMenu(bool show)
+    {
+        if (show)
+        {
+            //Disable opening options when already processing the win/lose.
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                Ball b = playerObj.GetComponent<Ball>();
+                if (b != null && !b.IsPlaying())
+                    return;
+            }
+
+            optionsPanel.SetActive(true);
+            //Time.timeScale = 0;
+            //StartCoroutine(DisplayTimerDuringPause());
+        }
+        else
+        {
+            optionsPanel.SetActive(false);
+            //Time.timeScale = 1;
+            //StopCoroutine(DisplayTimerDuringPause());
+        }
+    }
+
+    IEnumerator DisplayTimerDuringPause()
+    {
+        while(true)
+        {
+            mainTimerText.text = GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
+            mainTimerText.text = "IE " + GameManager.Instance.ConvertFloatTimeToString(GameManager.Instance.timeElapsed);
+            Debug.Log("IE " + GameManager.Instance.timeElapsed);
+            yield return new WaitForSecondsRealtime(0.02f);
+        }
+    }
+
     public void StartNewGame()
     {
         StartCoroutine(LoadNextLevel(-1));
     }
 
+    public void OptionsMainMenuButtonPressed()
+    {
+        ShowOptionsMenu(false);
+        DisablePlayerBall();
+        BackToMainMenuFromMidLevel();
+    }
     //Only during level speedrun mode.
     public void BackToMainMenuFromMidLevel()
     {
@@ -114,8 +158,24 @@ public class UIManager : MonoBehaviour
         yield return null;
     }
 
+    private void DisablePlayerBall()
+    {
+        GameObject g = GameObject.FindGameObjectWithTag("Player");
+        if(g != null)
+        {
+            Ball b = g.GetComponent<Ball>();
+            if(b != null) b.DisableBallMovement(); else Debug.LogWarning("WARNING: Ball script not found in player ball.");
+        }
+        else
+        {
+            Debug.LogWarning("WARNING: Ball not found from UI Manager.");
+        }
+    }
+
     public void RestartLevel()
     {
+        DisablePlayerBall();
+        ShowOptionsMenu(false); //safety
         StartCoroutine(RestartLevelFade());
     }
 
@@ -152,7 +212,7 @@ public class UIManager : MonoBehaviour
         //Only animate out if playing regular mode.
         if(GameManager.Instance.GetCurrentGameMode() == GameMode.Regular)
         {
-            //Transition Time = 0.5 secoonds for Loading Screen Start. Modify if needed
+            //Transition Time = 0.5 seconds for Loading Screen Start. Modify if needed
             loadingAnimator.Play("LoadingScreenStart");
             levelCompleteAnimator.Play("WinAnimateOut");
             yield return new WaitForSeconds(0.5f);
