@@ -15,9 +15,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainTimer;
     [SerializeField] private TextMeshProUGUI mainTimerText;
     [SerializeField] private GameObject optionsButton;
+    [SerializeField] private Animator loadingAnimator;
+
+    [Header("Stamina HUD")]
+    [SerializeField] private StaminaBarDisplay staminaBarDisplay;
+    [SerializeField] private Slider playerAttachedBar;
+    [SerializeField] private Image playerAttachedBarColor;
     [SerializeField] private Slider playerStaminaBar;
     [SerializeField] private Image playerStaminaBarColor;
-    [SerializeField] private Animator loadingAnimator;
+    [SerializeField] private Color staminaDangerColor = Color.red;
+    [SerializeField] private Color staminaWarningColor = Color.yellow;
+    [SerializeField] private Color staminaNormalColor;
+
 
     [Header("Main Menu HUD")]
     [SerializeField] private GameObject mainMenuPanel;
@@ -59,6 +68,19 @@ public class UIManager : MonoBehaviour
 
             ReloadLevelRecordTimes();
 
+            //Set the proper healthbar by mode (QQQQ fix on 1.06)
+            if (staminaBarDisplay == StaminaBarDisplay.Player)
+            {
+                playerStaminaBar.gameObject.SetActive(false);
+                playerAttachedBar.gameObject.SetActive(true);
+                playerStaminaBar = playerAttachedBar;
+                playerStaminaBarColor = playerAttachedBarColor;
+            }
+            else
+            {
+                playerAttachedBar.gameObject.SetActive(false);
+            }
+
         }
         else Destroy(this.gameObject);
     }
@@ -82,12 +104,12 @@ public class UIManager : MonoBehaviour
             //Hide the buttons if doing level speedruns.
             if (GameManager.Instance.GetCurrentGameMode() == GameMode.SpeedrunLevel)
             {
-                levelSpeedrunButtonsPanel.SetActive(false);
+                levelSpeedrunButtonsPanel.SetActive(true);
                 levelLapPanel.SetActive(false);
             }
             else
             {
-                levelSpeedrunButtonsPanel.SetActive(true);
+                levelSpeedrunButtonsPanel.SetActive(false);
                 levelLapPanel.SetActive(true);
             }
 
@@ -308,11 +330,11 @@ public class UIManager : MonoBehaviour
         playerStaminaBar.value = percent;
 
         if (playerStaminaBar.value <= danger)
-            playerStaminaBarColor.color = Color.red;
+            playerStaminaBarColor.color = staminaDangerColor;
         else if (playerStaminaBar.value <= warning)
-            playerStaminaBarColor.color = Color.yellow;
+            playerStaminaBarColor.color = staminaWarningColor;
         else
-            playerStaminaBarColor.color = Color.green;
+            playerStaminaBarColor.color = staminaNormalColor;
 
 
     }
@@ -332,4 +354,10 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.ChangeGameMode(GameMode.Regular);
         }
     }
+}
+
+public enum StaminaBarDisplay
+{
+    UI,
+    Player
 }
