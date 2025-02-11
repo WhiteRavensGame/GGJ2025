@@ -14,6 +14,7 @@ public class ScreenSlingshot : MonoBehaviour
     public Transform mouseLoc;
     public Rigidbody2D testPhyObj;
     private Ball playerReference;
+    public GameObject trajectoryLine;
 
     [Header("Balancing")]
     public float maxPullDistance;
@@ -163,6 +164,9 @@ public class ScreenSlingshot : MonoBehaviour
         //Use the ball's energy to be able to slingshot.
         playerReference.ConsumeEnergy(slingEnergyRequired);
 
+        //activate trajectory line on player ball
+        trajectoryLine.SetActive(true);
+
         isPressed = true;
         Vector2 mouseLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         controllerParent.position = mouseLoc;
@@ -176,6 +180,9 @@ public class ScreenSlingshot : MonoBehaviour
 
     void MouseReleased()
     {
+        //activate trajectory line on player ball
+        trajectoryLine.SetActive(false);
+
         isPressed = false;
         LaunchProjectile();
         controllerParent.gameObject.SetActive(false);
@@ -202,6 +209,11 @@ public class ScreenSlingshot : MonoBehaviour
         //testPhyObj.AddForce(launchDirection * 5, ForceMode2D.Impulse);
 
         //Debug.Log("LAUNCH Power: " + magnitude);
+    }
+
+    public Vector2 GetLaunchDirection()
+    {
+        return hook.position - mouseLoc.position;
     }
 
 }
