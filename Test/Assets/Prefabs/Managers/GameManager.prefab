@@ -11677,7 +11677,7 @@ MonoBehaviour:
   bestTimes: []
   playerName: CHEATER
   displayDeathSpots: 0
-  devEnvironment: -1
+  devEnvironment: 1
 --- !u!114 &3098654096530216655
 MonoBehaviour:
   m_ObjectHideFlags: 0

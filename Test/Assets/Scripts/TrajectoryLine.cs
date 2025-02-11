@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TrajectoryLine : MonoBehaviour
@@ -13,6 +14,8 @@ public class TrajectoryLine : MonoBehaviour
     private Rigidbody2D playerRb;
     [SerializeField] private ScreenSlingshot slingshot;
 
+    private int originalSegmentCount = 0;
+
     private const float TIME_CURVE_ADDITION = 0.5f;
    
     void Start()
@@ -23,6 +26,7 @@ public class TrajectoryLine : MonoBehaviour
         //grab line renderer component and set its number of points
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = segmentCount;
+        originalSegmentCount = lineRenderer.positionCount; //stores the segment count so it can be cleared when hiding.
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         playerRb = playerTransform.GetComponent<Rigidbody2D>();
@@ -30,6 +34,9 @@ public class TrajectoryLine : MonoBehaviour
 
     private void Update()
     {
+        //restores all the vertex count to be populated.
+        lineRenderer.positionCount = originalSegmentCount;
+
         //set the start position of line renderer
         Vector2 startPos = playerTransform.position;
         segments[0] = startPos;
@@ -53,6 +60,12 @@ public class TrajectoryLine : MonoBehaviour
             lineRenderer.SetPosition(i, segments[i]);
         }
 
+    }
+
+    private void OnDisable()
+    {
+        //clears the vertex count and sets to 0 to hide.
+        lineRenderer.positionCount = 0;
     }
 
 }
