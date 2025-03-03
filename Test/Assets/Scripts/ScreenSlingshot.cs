@@ -3,6 +3,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScreenSlingshot : MonoBehaviour
@@ -46,9 +47,20 @@ public class ScreenSlingshot : MonoBehaviour
             EnableSlowMo(false);
             return;
         }
-            
 
-        if(Input.GetMouseButtonDown(0))
+        //QQQQ - change after fan expo
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            mouseControlLockMode = CursorLockMode.None;
+            Cursor.lockState = mouseControlLockMode;
+        }
+        else
+        {
+            mouseControlLockMode = CursorLockMode.Locked;
+            Cursor.lockState = mouseControlLockMode;
+        }
+
+        if (Input.GetMouseButtonDown(0))
         {
             //don't perform a pull if the player is pressing a button.
             if (IsPointerOverUIButton()) return;

@@ -62,12 +62,13 @@ public class Ball : MonoBehaviour
                 UIManager.Instance.ShowOptionsMenu(false); //force close Options Menu
                 GameManager.Instance.RestartLevel();
             }
-            else if(Input.GetKeyDown(KeyCode.X))
+            else if (Input.GetKeyDown(KeyCode.X))
             {
                 DisableBallMovement();
                 UIManager.Instance.ShowOptionsMenu(false); //force close Options Menu
                 UIManager.Instance.OptionsMainMenuButtonPressed();
             }
+            
         }
         
     }

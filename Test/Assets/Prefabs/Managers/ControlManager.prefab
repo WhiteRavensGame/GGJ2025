@@ -328,7 +328,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 90
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -394,7 +394,7 @@ MonoBehaviour:
   launchForceMultiplier: 5
   slingEnergyRequired: 33
   enableSlowMo: 1
-  mouseControlLockMode: 0
+  mouseControlLockMode: 1
 --- !u!1 &9009071134472797236
 GameObject:
   m_ObjectHideFlags: 0
