@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Unity.Services.Analytics;
+using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -24,6 +26,9 @@ public class AnalyticsManager : MonoBehaviour
                 options.SetEnvironmentName("staging");
                 await UnityServices.InitializeAsync(options);
                 AnalyticsService.Instance.StartDataCollection();
+                Debug.Log("Staging Environment loaded.");
+                SetupEvents();
+                await SignUpAnonymouslyAsync();
             }
             else if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Production)
             {
@@ -31,6 +36,9 @@ public class AnalyticsManager : MonoBehaviour
                 
                 await UnityServices.InitializeAsync(options);
                 AnalyticsService.Instance.StartDataCollection();
+                Debug.Log("Production Environment loaded.");
+                SetupEvents();
+                await SignUpAnonymouslyAsync();
             }
             
             
@@ -40,6 +48,62 @@ public class AnalyticsManager : MonoBehaviour
             Destroy(this.gameObject);
         } 
         
+    }
+
+    async Task SignUpAnonymouslyAsync()
+    {
+        try
+        {
+            //clearing session allows multiple scores submitted in the same computer.
+            AuthenticationService.Instance.ClearSessionToken();
+
+            //creates profile for the player quickly to start playing the game. 
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Sign in anonymously succeeded!");
+
+            // Shows how to get the playerID
+            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+            
+
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    // Setup authentication event handlers if desired
+    void SetupEvents()
+    {
+        AuthenticationService.Instance.SignedIn += () => {
+            // Shows how to get a playerID
+            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+
+            // Shows how to get an access token
+            Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+
+        };
+
+        AuthenticationService.Instance.SignInFailed += (err) => {
+            Debug.LogError(err);
+        };
+
+        AuthenticationService.Instance.SignedOut += () => {
+            Debug.Log("Player signed out.");
+        };
+
+        AuthenticationService.Instance.Expired += () =>
+        {
+            Debug.Log("Player session could not be refreshed and expired.");
+        };
     }
 
     // Update is called once per frame

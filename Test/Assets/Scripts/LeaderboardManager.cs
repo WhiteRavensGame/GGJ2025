@@ -5,6 +5,10 @@ using System.Collections.Generic;
 // NOTE: Make sure to include the following namespace wherever you want to access Leaderboard Creator methods
 using Dan.Main;
 using UnityEngine.SocialPlatforms.Impl;
+using Newtonsoft.Json;
+using Unity.Services.Leaderboards;
+using System.Net.Mail;
+
 
 namespace LeaderboardCreatorDemo
 {
@@ -36,8 +40,14 @@ namespace LeaderboardCreatorDemo
             //LoadEntries();
         }
 
+        public async void AddScore(string leaderboardId, float score)
+        {
+            Debug.Log("Adding score to UGS");
+            var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
+            Debug.Log(JsonConvert.SerializeObject(playerEntry));
+        }
 
-        //private void LoadEntries()
+
         public void LoadEntries()
         {
             // Q: How do I reference my own leaderboard?

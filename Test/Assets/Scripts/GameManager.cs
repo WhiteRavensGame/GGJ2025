@@ -6,6 +6,7 @@ using System;
 using TMPro;
 using LeaderboardCreatorDemo;
 using Dan.Main;
+using Unity.Services.Authentication;
 
 public class GameManager : MonoBehaviour
 {
@@ -162,6 +163,9 @@ public class GameManager : MonoBehaviour
             bestTimes[currentLevel-1] = levelTime;
             PlayerPrefs.SetFloat(GetRecordLevelName(currentLevel), levelTime);
         }
+
+        //upload to Unity Leaderboards
+        leaderboardManager.AddScore("test", timeElapsed);
 
     }
 
@@ -355,11 +359,14 @@ public class GameManager : MonoBehaviour
         leaderboardManager.DisplaySelectedLeaderboard();
     }
 
-    public void ChangePlayerName(string newName)
+    public async void ChangePlayerName(string newName)
     {
         playerName = newName;
         PlayerPrefs.SetString("PlayerName", playerName);
         Debug.Log("player name changed to " + playerName);
+
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
+        Debug.Log("player name changed successfully in UGS");
     }
     public string GetPlayerName()
     {

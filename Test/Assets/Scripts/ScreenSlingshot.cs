@@ -109,8 +109,6 @@ public class ScreenSlingshot : MonoBehaviour
 
                 mouseLoc.position = constrainedPoint;
                 //mouseLoc.position = cursorLoc;
-                Debug.Log(mouseLoc.position + "," + cursorLoc);
-
             }
 
 
