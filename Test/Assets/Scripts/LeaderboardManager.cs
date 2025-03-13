@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 // NOTE: Make sure to include the following namespace wherever you want to access Leaderboard Creator methods
 using Dan.Main;
-using UnityEngine.SocialPlatforms.Impl;
 using Newtonsoft.Json;
 using Unity.Services.Leaderboards;
-using System.Net.Mail;
+using UnityLeaderboardEntry = Unity.Services.Leaderboards.Models.LeaderboardEntry;
 
 
 namespace LeaderboardCreatorDemo
@@ -47,11 +46,32 @@ namespace LeaderboardCreatorDemo
             Debug.Log(JsonConvert.SerializeObject(playerEntry));
         }
 
+        public async void GetPlayerScore(string leaderboardId)
+        {
+            Debug.Log("Loading player scores");
+
+            var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
+            Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+
+
+            //NOTE: The class is originally LeaderboardEntry, but we are using alias UnityLeaderboardEntry to prevent conflict. 
+            List<UnityLeaderboardEntry> entries = scoresResponse.Results;
+
+            foreach (var entry in entries)
+            {
+                Debug.Log($"Name: {entry.PlayerName} Score: {entry.Score}");
+            }
+
+
+        }
+
 
         public void LoadEntries()
         {
             // Q: How do I reference my own leaderboard?
             // A: Leaderboards.<NameOfTheLeaderboard>
+
+            GetPlayerScore("test");
 
             //Delete the leaderboards entries and clear them to load new fresh times.
             foreach(var entry in leaderboardEntries)
