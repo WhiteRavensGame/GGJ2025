@@ -106,6 +106,13 @@ public class GameManager : MonoBehaviour
     public bool CheckNewRecordLocalLevelTime(int level, float timeAchieved)
     {
         int levelIndex = level - 1;
+
+        if(levelIndex >= bestTimes.Count || levelIndex < 0)
+        {
+            Debug.LogWarning("Warning: Level Index out of bounds of bestTimes. Not checking record...");
+            return false;
+        }
+
         if (bestTimes[levelIndex] <= timeAchieved)
             return false;
 
