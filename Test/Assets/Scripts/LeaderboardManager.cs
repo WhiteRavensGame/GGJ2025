@@ -183,6 +183,11 @@ namespace LeaderboardCreatorDemo
         //For Level Speedruns
         public void UploadEntryLevel(int level, float time)
         {
+
+#if UNITY_EDITOR
+            GameManager.Instance.devEnvironment = DevEnvironment.Development;
+#endif
+
             if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
                 return;
 
