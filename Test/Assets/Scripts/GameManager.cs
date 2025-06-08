@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
                 ChangeGameMode(GameMode.Regular);
 
             currentLevel = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log($"{SceneManager.GetActiveScene().name} , {currentLevel}");
         } 
         else Destroy(this.gameObject);
 
@@ -300,7 +301,15 @@ public class GameManager : MonoBehaviour
         }
         else if(previousGameMode == GameMode.MainMenu && currentGameMode == GameMode.Regular)
         {
-            UIManager.Instance.StartNewGame();
+            if(UIManager.Instance == null)
+            {
+                Debug.LogWarning("Warning: UI Manager is null");
+            }
+            else
+            {
+                UIManager.Instance.StartNewGame();
+            }
+            
         }
         else if(newGameMode == GameMode.End)
         {
