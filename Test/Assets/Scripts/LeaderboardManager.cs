@@ -41,6 +41,13 @@ namespace LeaderboardCreatorDemo
 
         public async void AddScore(string leaderboardId, float score)
         {
+            if (GameManager.Instance.devEnvironment == DevEnvironment.Development)
+            {
+                Debug.Log("Score NOT added to UGS due to Development Environment.");
+                return;
+            }
+                
+
             Debug.Log("Adding score to UGS");
             var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
             Debug.Log(JsonConvert.SerializeObject(playerEntry));

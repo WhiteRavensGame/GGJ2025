@@ -45,7 +45,11 @@ public class GameManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "MainMenu")
                 ChangeGameMode(GameMode.MainMenu);
             else
-                ChangeGameMode(GameMode.Regular);
+            {
+                ChangeGameMode(GameMode.SpeedrunLevel);
+                StartTimer();
+            }
+                
 
             currentLevel = SceneManager.GetActiveScene().buildIndex;
             Debug.Log($"{SceneManager.GetActiveScene().name} , {currentLevel}");
