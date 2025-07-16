@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AspectRatioPreserver : MonoBehaviour
 {
-    public float targetAspectRatio = 16f / 9f;
+    [SerializeField] private float targetAspectRatio = 16f / 9f;
 
     void Start()
     {

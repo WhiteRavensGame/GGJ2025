@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class QQQQ : MonoBehaviour
 {
+    //All hacks go in here that should be disabled when shipping the game out!
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

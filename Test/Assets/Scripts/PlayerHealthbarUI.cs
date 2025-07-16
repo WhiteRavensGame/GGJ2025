@@ -18,10 +18,14 @@ public class PlayerHealthbarUI : MonoBehaviour
     {
         if(player != null)
         {
-            if(ball.currentMode == BallMode.Small)
+            if(ball.GetPlayerBallMode() == BallMode.Small)
                 transform.position = player.position + offset;
             else
-                transform.position = player.position + offset * 2;
+            {
+                float largeBallOffsetMultiplier = 2f;
+                transform.position = player.position + offset * largeBallOffsetMultiplier;
+            }
+                
         }
             
         else

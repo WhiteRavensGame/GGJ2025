@@ -9,7 +9,7 @@ public class CSVReader : MonoBehaviour
 
     void Start()
     {
-        if (!GameManager.Instance.displayDeathSpots)
+        if (!AnalyticsManager.Instance.IsDisplayingDeathDeathSpots())
             Destroy(this.gameObject);
         else
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class EndScreenUI : MonoBehaviour
 {
-    public TextMeshProUGUI textClearTime;
+    [SerializeField] private TextMeshProUGUI textClearTime;
 
     private void OnEnable()
     {

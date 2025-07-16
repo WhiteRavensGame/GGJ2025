@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class LeaderboardEntry : MonoBehaviour
 {
-    public TextMeshProUGUI rankText;
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI rankText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private bool isMe = false;
 

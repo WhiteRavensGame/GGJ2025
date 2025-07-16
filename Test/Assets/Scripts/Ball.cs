@@ -1,19 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
-    public BallMode currentMode;
-    public Rigidbody2D rb;
-    public Animator animator;
-    public SpriteRenderer bubbleSprite;
+    [SerializeField] private BallMode currentBallMode;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer bubbleSprite;
 
     [Header("Energy System")]
-    public float currentEnergy;
-    public float maxEnergy;
-    public float energyRegenerationRate;
-    public float drowningEnergyRate;
+    [SerializeField] private float currentEnergy = 100;
+    [SerializeField] private float maxEnergy = 100;
+    [SerializeField] private float energyRegenerationRate = 33;
+    [SerializeField] private float drowningEnergyRate = 10;
 
     private bool insideWater;
     private bool finishedLevel;
@@ -35,7 +36,7 @@ public class Ball : MonoBehaviour
             return;
 
         //Small ball cannot breathe underwater
-        if( !insideWater || (insideWater && currentMode == BallMode.Bubbled) )
+        if( !insideWater || (insideWater && currentBallMode == BallMode.Bubbled) )
         {
             currentEnergy += Time.deltaTime * energyRegenerationRate;
             currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
@@ -75,21 +76,21 @@ public class Ball : MonoBehaviour
 
     public void ChangeBallMode(BallMode newMode)
     {
-        if (newMode == currentMode)
+        if (newMode == currentBallMode)
             return;
 
-        currentMode = newMode;
-        if(currentMode == BallMode.Small)
+        currentBallMode = newMode;
+        if(currentBallMode == BallMode.Small)
         {
             transform.localScale = Vector3.one * .5f;
             bubbleSprite.gameObject.SetActive(false);
         }
-        else if (currentMode == BallMode.Bubbled)
+        else if (currentBallMode == BallMode.Bubbled)
         {
             transform.localScale = Vector3.one * 1f;
             bubbleSprite.gameObject.SetActive(true);
         }
-        else if (currentMode == BallMode.Large)
+        else if (currentBallMode == BallMode.Large)
         {
             transform.localScale = Vector3.one * 1.5f;
         }
@@ -134,11 +135,11 @@ public class Ball : MonoBehaviour
         //Debug.Log("TRIGGER ENTERED: " + other.transform.tag);
         if(other.transform.tag == "Killzone")
         {
-            if(currentMode == BallMode.Small)
+            if(currentBallMode == BallMode.Small)
             {
                 Die();
             }
-            else if(currentMode == BallMode.Bubbled)
+            else if(currentBallMode == BallMode.Bubbled)
             {
                 //Shrink player back to small
                 ChangeBallMode(BallMode.Small);
@@ -176,6 +177,11 @@ public class Ball : MonoBehaviour
         animator.Play("Victory");
         AudioManager.Instance.PlayYaySFX();
         transform.eulerAngles = Vector3.zero;
+    }
+
+    public BallMode GetPlayerBallMode()
+    {
+        return currentBallMode;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

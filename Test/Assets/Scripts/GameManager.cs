@@ -25,10 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<float> bestTimes;
     private float bestFullRunTime;
 
-    public string playerName;
-    public bool displayDeathSpots;
+    [SerializeField] private string playerName;
 
-    public DevEnvironment devEnvironment;
+    private DevEnvironment devEnvironment;
 
     private GameMode currentGameMode = GameMode.MainMenu;
     
@@ -402,6 +401,11 @@ public class GameManager : MonoBehaviour
     public DevEnvironment GetDevEnvironment()
     {
         return devEnvironment;
+    }
+
+    public void SetDevEnvironment(DevEnvironment environment)
+    {
+        devEnvironment = environment;
     }
 
 }

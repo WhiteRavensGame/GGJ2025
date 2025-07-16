@@ -12,7 +12,10 @@ public class AnalyticsManager : MonoBehaviour
     [Header("Debug Mode")]
     public bool isStaging; 
     public bool displayDebugLogs;
-    
+
+
+    [SerializeField] private bool displayDeathSpots = false;
+
     async void Awake()
     {
         if (Instance == null)
@@ -173,5 +176,10 @@ public class AnalyticsManager : MonoBehaviour
             Debug.Log($"[ANALYTICS] LevelClear Event sent: Level {level} took {time}");
 
 
+    }
+
+    public bool IsDisplayingDeathDeathSpots()
+    {
+        return displayDeathSpots;
     }
 }

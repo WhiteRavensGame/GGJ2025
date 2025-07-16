@@ -2,19 +2,8 @@ using UnityEngine;
 
 public class RotatingObstacle : MonoBehaviour
 {
-    public float rotateSpeed;
-    public bool isClockwise;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private float rotateSpeed;
+    [SerializeField] private bool isClockwise;
 
     private void FixedUpdate()
     {

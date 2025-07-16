@@ -44,7 +44,7 @@ public class TrajectoryLine : MonoBehaviour
 
         //set the starting velocity based on the bullet physics
         //(Replaced transform.right with the actual direction of the ball)
-        Vector2 startVelocity = slingshot.GetLaunchDirection() * slingshot.launchForceMultiplier;
+        Vector2 startVelocity = slingshot.GetLaunchDirection() * slingshot.GetLaunchForceMultiplier();
 
         //set the starting velocity
         for (int i = 1; i < segmentCount; i++) 
@@ -67,5 +67,7 @@ public class TrajectoryLine : MonoBehaviour
         //clears the vertex count and sets to 0 to hide.
         lineRenderer.positionCount = 0;
     }
+
+    
 
 }

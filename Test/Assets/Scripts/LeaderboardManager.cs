@@ -41,7 +41,7 @@ namespace LeaderboardCreatorDemo
 
         public async void AddScore(string leaderboardId, float score)
         {
-            if (GameManager.Instance.devEnvironment == DevEnvironment.Development)
+            if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
             {
                 Debug.Log("Score NOT added to UGS due to Development Environment.");
                 return;
@@ -96,7 +96,7 @@ namespace LeaderboardCreatorDemo
                 {
                     //Apply conversion on the score entry (two digits)
                     float exactTime = entries[i].Score / 100.00f;
-                    string playerName = GameManager.Instance.playerName;
+                    string playerName = GameManager.Instance.GetPlayerName();
                     bool isMe = entry.Username == playerName;
                     //bool isMe = false;
 
@@ -141,7 +141,7 @@ namespace LeaderboardCreatorDemo
                 {
                     //Apply conversion on the score entry (two digits)
                     float exactTime = entries[i].Score / 100.00f;
-                    string playerName = GameManager.Instance.playerName;
+                    string playerName = GameManager.Instance.GetPlayerName();
                     bool isMe = entry.Username == playerName;
                     //bool isMe = false;
 
@@ -192,7 +192,7 @@ namespace LeaderboardCreatorDemo
         {
 
 #if UNITY_EDITOR
-            GameManager.Instance.devEnvironment = DevEnvironment.Development;
+            GameManager.Instance.SetDevEnvironment(DevEnvironment.Development);
 #endif
 
             if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)

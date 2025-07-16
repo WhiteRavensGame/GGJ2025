@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 public class DestructibleTile : MonoBehaviour
 {
     private Tilemap destructibleTilemap;
-    public GameObject g;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

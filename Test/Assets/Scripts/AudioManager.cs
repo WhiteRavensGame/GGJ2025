@@ -4,15 +4,15 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioSource audioSource;
-    public AudioSource sfxSource;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource sfxSource;
 
-    public AudioClip jumpAudioClip;
-    public AudioClip yayAudioClip;
-    public AudioClip deathAudioClip;
-    public AudioClip bubblePopAudioClip;
-    public AudioClip sparkleClip;
-    public AudioClip waterSplashClip;
+    [SerializeField] private AudioClip jumpAudioClip;
+    [SerializeField] private AudioClip yayAudioClip;
+    [SerializeField] private AudioClip deathAudioClip;
+    [SerializeField] private AudioClip bubblePopAudioClip;
+    [SerializeField] private AudioClip sparkleClip;
+    [SerializeField] private AudioClip waterSplashClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

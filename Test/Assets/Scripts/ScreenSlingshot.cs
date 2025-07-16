@@ -9,21 +9,21 @@ using UnityEngine.UI;
 public class ScreenSlingshot : MonoBehaviour
 {
     [Header("References")]
-    public LineRenderer lineRenderer;
-    public Transform controllerParent;
-    public Transform hook;
-    public Transform mouseLoc;
-    public Rigidbody2D testPhyObj;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Transform controllerParent;
+    [SerializeField] private Transform hook;
+    [SerializeField] private Transform mouseLoc;
+    [SerializeField] private Rigidbody2D testPhyObj;
     private Ball playerReference;
-    public GameObject trajectoryLine;
+    [SerializeField] private GameObject trajectoryLine;
 
     [Header("Balancing")]
-    public float maxPullDistance;
-    public float launchForceMultiplier = 10;
-    public float slingEnergyRequired = 25;
+    [SerializeField] private float maxPullDistance = 3;
+    [SerializeField] private float launchForceMultiplier = 5;
+    [SerializeField] private float slingEnergyRequired = 33;
 
-    public bool enableSlowMo;
-    public CursorLockMode mouseControlLockMode;
+    [SerializeField] private bool enableSlowMo = true;
+    [SerializeField] private CursorLockMode mouseControlLockMode = CursorLockMode.Locked;
 
     private Vector2 cursorLoc = Vector2.zero;
     private bool isPressed = false;
@@ -224,6 +224,10 @@ public class ScreenSlingshot : MonoBehaviour
     public Vector2 GetLaunchDirection()
     {
         return hook.position - mouseLoc.position;
+    }
+    public float GetLaunchForceMultiplier()
+    {
+        return launchForceMultiplier;
     }
 
 }
