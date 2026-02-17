@@ -22,24 +22,29 @@ public class ScreenSlingshot : MonoBehaviour
     [SerializeField] private float launchForceMultiplier = 5;
     [SerializeField] private float slingEnergyRequired = 33;
 
+    [Header("Slo-mo")]
     [SerializeField] private bool enableSlowMo = true;
+    [SerializeField] private float sloMoTimescale = 0.1f;
+    private float defaultFixedDeltaTime = .02f;
     [SerializeField] private CursorLockMode mouseControlLockMode = CursorLockMode.Locked;
 
     private Vector2 cursorLoc = Vector2.zero;
     private bool isPressed = false;
 
+    
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         UpdateHookLinePosition();
         playerReference = GameObject.FindGameObjectWithTag("Player").GetComponent<Ball>();
 
         //Switch Mouse Control mode.
-        Cursor.lockState = mouseControlLockMode;        
+        Cursor.lockState = mouseControlLockMode;
+
+        //Set initial values. 
+        defaultFixedDeltaTime = Time.fixedDeltaTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (playerReference.IsDead() || playerReference.HasWon())
@@ -92,10 +97,6 @@ public class ScreenSlingshot : MonoBehaviour
                 Vector2 constrainedPoint = hookPos + direction;
 
                 mouseLoc.position = constrainedPoint;
-                //Debug.Log(mouseLoc.position);
-                //Debug.Log(Input.mousePositionDelta);
-
-
             }
             else if(Cursor.lockState == CursorLockMode.Locked)
             {
@@ -111,14 +112,7 @@ public class ScreenSlingshot : MonoBehaviour
                 //mouseLoc.position = cursorLoc;
             }
 
-
             lineRenderer.SetPosition(1, mouseLoc.position);
-
-            //TESTING THE INPUT
-            //if(Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    LaunchProjectile();
-            //}
         }
 
     }
@@ -146,16 +140,17 @@ public class ScreenSlingshot : MonoBehaviour
 
     void EnableSlowMo(bool enable)
     {
+        //TODO: Fix slo-mo timers to be consistent with actual slowdown. 
         enableSlowMo = enable;
         if(enableSlowMo)
         {
-            Time.timeScale = 0.1f;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
+            Time.timeScale = sloMoTimescale;
+            Time.fixedDeltaTime = Time.timeScale * defaultFixedDeltaTime;
         }
         else
         {
             Time.timeScale = 1;
-            Time.fixedDeltaTime = .02f;
+            Time.fixedDeltaTime = defaultFixedDeltaTime;
         }
     }
 

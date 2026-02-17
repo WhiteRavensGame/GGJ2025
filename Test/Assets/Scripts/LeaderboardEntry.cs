@@ -8,6 +8,7 @@ public class LeaderboardEntry : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI scoreText;
 
+    [SerializeField] private Color playerColor = Color.yellow;
     private bool isMe = false;
 
     public void InitializeContent(int rank, string name, float score, bool isPlayer = false)
@@ -20,9 +21,9 @@ public class LeaderboardEntry : MonoBehaviour
 
         if (isMe)
         {
-            rankText.color = Color.yellow;
-            nameText.color = Color.yellow;
-            scoreText.color = Color.yellow;
+            rankText.color = playerColor;
+            nameText.color = playerColor;
+            scoreText.color = playerColor;
         }
     }
 }

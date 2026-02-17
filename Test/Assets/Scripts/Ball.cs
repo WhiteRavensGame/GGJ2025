@@ -29,7 +29,6 @@ public class Ball : MonoBehaviour
         isDead = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isDead)
@@ -132,7 +131,6 @@ public class Ball : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        //Debug.Log("TRIGGER ENTERED: " + other.transform.tag);
         if(other.transform.tag == "Killzone")
         {
             if(currentBallMode == BallMode.Small)

@@ -15,7 +15,7 @@ public class EndScreenUI : MonoBehaviour
         bool beatRecord = GameManager.Instance.CheckNewRecordFullRunTime(totalClearTime);
         if(beatRecord)
         {
-            //Display new record?
+            //TODO: Show completed/beaten record. 
         }
     }
 

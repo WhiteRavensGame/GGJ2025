@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     private DevEnvironment devEnvironment;
 
     private GameMode currentGameMode = GameMode.MainMenu;
+    private const int MAX_LEVEL_COUNT = 8;
+
+    private const string PLAYERPREFS_PLAYERNAME = "PlayerName";
+    private const string PLAYERPREFS_FULLRUNRECORD = "FullRunRecord";
+    private const string PLAYERPREFS_RECORDLEVELPREFIX = "Record_Level";
     
 
     void Awake()
@@ -59,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        string savedName = PlayerPrefs.GetString("PlayerName");
+        string savedName = PlayerPrefs.GetString(PLAYERPREFS_PLAYERNAME);
         if ( !string.IsNullOrEmpty(savedName) )
         {
             nameField.text = savedName.ToString();
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
     public void InitializeLocalBestTimes()
     {
         //Levels
-        for(int i = 1; i <= 8; i++)
+        for(int i = 1; i <= MAX_LEVEL_COUNT; i++)
         {
             float f = PlayerPrefs.GetFloat(GetRecordLevelName(i));
             if (f == 0) bestTimes.Add(Mathf.Infinity);
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Full run
-        float fullRunTime = PlayerPrefs.GetFloat("FullRunRecord");
+        float fullRunTime = PlayerPrefs.GetFloat(PLAYERPREFS_FULLRUNRECORD);
         if (fullRunTime == 0) bestFullRunTime = Mathf.Infinity;
         else bestFullRunTime = fullRunTime;
     }
@@ -128,7 +133,7 @@ public class GameManager : MonoBehaviour
             return false;
 
         bestFullRunTime = timeAchieved;
-        PlayerPrefs.SetFloat("FullRunRecord", timeAchieved);
+        PlayerPrefs.SetFloat(PLAYERPREFS_FULLRUNRECORD, timeAchieved);
         return true;
     }
 
@@ -139,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     public string GetRecordLevelName(int level)
     {
-        return ("Record_Level" + level);
+        return (PLAYERPREFS_RECORDLEVELPREFIX + level);
     }
     public void ResetLocalTimes()
     {
@@ -150,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
 
         bestFullRunTime = Mathf.Infinity;
-        PlayerPrefs.SetFloat("FullRunRecord", bestFullRunTime);
+        PlayerPrefs.SetFloat(PLAYERPREFS_FULLRUNRECORD, bestFullRunTime);
     }
 
     public int GetCurrentLevel()
@@ -365,7 +370,6 @@ public class GameManager : MonoBehaviour
     {
         //Reset the player to allow more entries to leaderboard.
         LeaderboardCreator.ResetPlayer();
-        Debug.Log("PLAYER RESET");
     }
 
     public void SendTimeToLeaderboard()

@@ -5,6 +5,7 @@ public class PlayerHealthbarUI : MonoBehaviour
     [SerializeField] private Vector3 offset;
     private Transform player;
     private Ball ball;
+    private const float largeBallOffsetMultiplier = 2f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +23,6 @@ public class PlayerHealthbarUI : MonoBehaviour
                 transform.position = player.position + offset;
             else
             {
-                float largeBallOffsetMultiplier = 2f;
                 transform.position = player.position + offset * largeBallOffsetMultiplier;
             }
                 
