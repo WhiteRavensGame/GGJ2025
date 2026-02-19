@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     private const string PLAYERPREFS_PLAYERNAME = "PlayerName";
     private const string PLAYERPREFS_FULLRUNRECORD = "FullRunRecord";
     private const string PLAYERPREFS_RECORDLEVELPREFIX = "Record_Level";
-    
+    private const string SCENENAME_MAINMENU = "MainMenu";
+
 
     void Awake()
     {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
             times = new List<float>();
             bestTimes = new List<float>();
 
-            if (SceneManager.GetActiveScene().name == "MainMenu")
+            if (SceneManager.GetActiveScene().name == SCENENAME_MAINMENU)
                 ChangeGameMode(GameMode.MainMenu);
             else
             {
@@ -305,7 +306,7 @@ public class GameManager : MonoBehaviour
         if (newGameMode == GameMode.MainMenu)
         {
             //Load main menu and disable the gameplay UI
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SCENENAME_MAINMENU);
         }
         else if(previousGameMode == GameMode.MainMenu && currentGameMode == GameMode.Regular)
         {
