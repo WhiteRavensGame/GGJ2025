@@ -32,7 +32,7 @@ public class MovingPlatform : MonoBehaviour
     private void CheckReverseDirection()
     {
         float distance = (destination - (Vector2)platform.position).magnitude;
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if (distance <= distanceReachThreshold)
         {
             direction *= -1;

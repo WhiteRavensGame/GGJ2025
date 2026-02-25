@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class QQQQ : MonoBehaviour
 {
@@ -7,7 +8,22 @@ public class QQQQ : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // Get the active render pipeline asset
+        RenderPipelineAsset activePipeline = GraphicsSettings.currentRenderPipeline;
+
+        if (activePipeline != null)
+        {
+            Debug.Log("Active Render Pipeline: " + activePipeline.GetType().Name);
+
+            if (activePipeline.GetType().Name.Contains("UniversalRenderPipelineAsset"))
+            {
+                Debug.Log("The scene is using URP!");
+            }
+        }
+        else
+        {
+            Debug.Log("The scene is using the Built-in Render Pipeline.");
+        }
     }
 
     // Update is called once per frame
