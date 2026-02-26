@@ -55,7 +55,7 @@ namespace LeaderboardCreatorDemo
 
         public async void GetPlayerScore(string leaderboardId)
         {
-            Debug.Log("Loading player scores");
+            Debug.Log("Loading target scores");
 
             var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
             Debug.Log(JsonConvert.SerializeObject(scoresResponse));

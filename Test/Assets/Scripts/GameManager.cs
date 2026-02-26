@@ -387,10 +387,10 @@ public class GameManager : MonoBehaviour
     {
         playerName = newName;
         PlayerPrefs.SetString("PlayerName", playerName);
-        Debug.Log("player name changed to " + playerName);
+        Debug.Log("target name changed to " + playerName);
 
         await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
-        Debug.Log("player name changed successfully in UGS");
+        Debug.Log("target name changed successfully in UGS");
     }
     public string GetPlayerName()
     {
@@ -400,7 +400,7 @@ public class GameManager : MonoBehaviour
     {
         float rand = UnityEngine.Random.Range(100, 9999);
         playerName = "Guest " + rand;
-        Debug.Log("player name changed to " + playerName);
+        Debug.Log("target name changed to " + playerName);
     }
 
     public DevEnvironment GetDevEnvironment()

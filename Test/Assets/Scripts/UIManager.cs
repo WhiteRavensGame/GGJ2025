@@ -201,7 +201,7 @@ public class UIManager : MonoBehaviour
         if(g != null)
         {
             Ball b = g.GetComponent<Ball>();
-            if(b != null) b.DisableBallMovement(); else Debug.LogWarning("WARNING: Ball script not found in player ball.");
+            if(b != null) b.DisableBallMovement(); else Debug.LogWarning("WARNING: Ball script not found in target ball.");
         }
         else
         {
