@@ -20,6 +20,8 @@ public class Ball : MonoBehaviour
     private bool finishedLevel;
     private bool isDead;
 
+    //private float fallSpeedYDampingChangeThreshold;
+
     //private RigidbodyType2D defaultRbBodyType;
 
     void Start()
@@ -27,6 +29,8 @@ public class Ball : MonoBehaviour
         //defaultRbBodyType = rb.bodyType;
         finishedLevel = false;
         isDead = false;
+
+        //fallSpeedYDampingChangeThreshold = CameraManager.Instance.fallSpeedYDampingChangeThreshold;
     }
 
     void Update()
@@ -70,6 +74,24 @@ public class Ball : MonoBehaviour
             }
             
         }
+
+        //CAMERA MOVEMENT PART. GARBAGE CODE FROM A GARBAGE GUIDE
+        //If we're falling past a certain speed threshold
+        //if(rb.linearVelocityY < fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+        //{
+        //    CameraManager.Instance.LerpYDamping(true);
+        //}
+
+        ////if we aree standing still or moving up
+        //if(rb.linearVelocityY >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
+        //{
+        //    //reset it so it can be called again
+        //    CameraManager.Instance.LerpedFromPlayerFalling = false;
+
+        //    CameraManager.Instance.LerpYDamping(false);
+        //}
+
+
         
     }
 

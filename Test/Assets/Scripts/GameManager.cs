@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string playerName;
 
-    private DevEnvironment devEnvironment;
+    [SerializeField] private DevEnvironment devEnvironment;
 
     private GameMode currentGameMode = GameMode.MainMenu;
     private const int MAX_LEVEL_COUNT = 8;

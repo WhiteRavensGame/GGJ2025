@@ -20,8 +20,8 @@ public class TilemapDestroyer : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        tilePos = grid.LocalToCell(mousePos); //LocalTiCell?
-        Debug.Log($"{mousePos}  {tilePos}");
+        tilePos = grid.LocalToCell(mousePos); //LocalTiCell? 
+        //Debug.Log($"{mousePos}  {tilePos}");
         if (Input.GetKeyDown(KeyCode.F))
         {
             tilemap.SetTile(new Vector3Int(tilePos.x, tilePos.y, 0), null);
