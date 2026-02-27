@@ -27,16 +27,16 @@ namespace LeaderboardCreatorDemo
         private List<GameObject> leaderboardEntries = new List<GameObject>();
         int totalRankLimit = 1000;
 
-        // Make changes to this section according to how you're storing the player's score:
-        // ------------------------------------------------------------
-        //[SerializeField] private ExampleGame _exampleGame;
+        [SerializeField]
+        private LeaderboardType leaderboardType;
 
         private float Score => GameManager.Instance.CalculateFinalTotalTime();
         // ------------------------------------------------------------
 
         private void Start()
         {
-            //LoadEntries();
+            //if(leaderboardType == LeaderboardType.Danzqz || leaderboardType == LeaderboardType.All)
+            //    LoadEntries();
         }
 
         public async void AddScore(string leaderboardId, float score)
@@ -251,4 +251,12 @@ namespace LeaderboardCreatorDemo
             return null;
         }
     }
+}
+
+public enum LeaderboardType
+{
+    None,
+    Danzqz,
+    UnityLeaderboards,
+    All
 }
