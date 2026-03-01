@@ -183,7 +183,7 @@ public class CameraManager : MonoBehaviour
     //This can be extended to allow movement Upward or Downward
     public void SwapCamera(CinemachineCamera cameraFromLeft, CinemachineCamera cameraFromRight, Vector2 triggerExitDirection)
     {
-        Debug.Log($"DOG SHIT {triggerExitDirection.x} - CurrentCamera{currentCamera} - R: {cameraFromRight==currentCamera} L: {cameraFromLeft==currentCamera}");
+        //Debug.Log($"SwapCamera: {triggerExitDirection.x} - CurrentCamera{currentCamera} - R: {cameraFromRight==currentCamera} L: {cameraFromLeft==currentCamera}");
         //if the current camera is the camera on the left and our trigger exit direction was on the right
         if(currentCamera == cameraFromLeft && triggerExitDirection.x > 0f)
         {

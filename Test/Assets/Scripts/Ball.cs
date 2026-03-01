@@ -1,3 +1,4 @@
+using Unity.Services.Authentication.PlayerAccounts;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,6 @@ public class Ball : MonoBehaviour
     private bool finishedLevel;
     private bool isDead;
 
-    //private float fallSpeedYDampingChangeThreshold;
-
     //private RigidbodyType2D defaultRbBodyType;
 
     void Start()
@@ -29,8 +28,6 @@ public class Ball : MonoBehaviour
         //defaultRbBodyType = rb.bodyType;
         finishedLevel = false;
         isDead = false;
-
-        //fallSpeedYDampingChangeThreshold = CameraManager.Instance.fallSpeedYDampingChangeThreshold;
     }
 
     void Update()
@@ -74,24 +71,6 @@ public class Ball : MonoBehaviour
             }
             
         }
-
-        //CAMERA MOVEMENT PART. GARBAGE CODE FROM A GARBAGE GUIDE
-        //If we're falling past a certain speed threshold
-        //if(rb.linearVelocityY < fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
-        //{
-        //    CameraManager.Instance.LerpYDamping(true);
-        //}
-
-        ////if we aree standing still or moving up
-        //if(rb.linearVelocityY >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
-        //{
-        //    //reset it so it can be called again
-        //    CameraManager.Instance.LerpedFromPlayerFalling = false;
-
-        //    CameraManager.Instance.LerpYDamping(false);
-        //}
-
-
         
     }
 
@@ -131,6 +110,10 @@ public class Ball : MonoBehaviour
     public void ConsumeEnergy(float energyConsumed)
     {
         currentEnergy -= energyConsumed;
+    }
+    public void RecoverEnergyByPercent(float percent)
+    {
+        currentEnergy += (percent * maxEnergy);
     }
 
     private void Die()
@@ -216,12 +199,6 @@ public class Ball : MonoBehaviour
             ChangeBallMode(BallMode.Bubbled);
             collision.gameObject.SetActive(false);
             AudioManager.Instance.PlaySparkleSFX();
-        }
-
-        else if (collision.tag == "MainMenuTrigger")
-        {
-            //QQQQ: Load First Level
-            GameManager.Instance.ChangeGameMode(GameMode.Regular);
         }
 
         if (collision.tag == "WaterZone")

@@ -18,7 +18,6 @@ public class CameraControlTrigger : MonoBehaviour
         
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("GARBAGE TUTORIAL");
             //pan the camera
             CameraManager.Instance.PanCameraOnContact(customInspectorObjects.panDistance, customInspectorObjects.panTime, customInspectorObjects.panDirection, false);
         }
@@ -26,7 +25,6 @@ public class CameraControlTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("GAsdfgsdfgdfgIAL");
         Vector2 exitDirection = (collision.transform.position - collider2D.bounds.center).normalized;
 
         if(customInspectorObjects.swapCameras && customInspectorObjects.cameraOnLeft != null && customInspectorObjects.cameraOnRight != null)
