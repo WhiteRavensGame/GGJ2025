@@ -13,11 +13,11 @@ public class QQQQ : MonoBehaviour
 
         if (activePipeline != null)
         {
-            Debug.Log("Active Render Pipeline: " + activePipeline.GetType().Name);
+            //Debug.Log("Active Render Pipeline: " + activePipeline.GetType().Name);
 
             if (activePipeline.GetType().Name.Contains("UniversalRenderPipelineAsset"))
             {
-                Debug.Log("The scene is using URP!");
+                //Debug.Log("The scene is using URP!");
             }
         }
         else

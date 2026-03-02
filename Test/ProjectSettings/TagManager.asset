@@ -12,6 +12,7 @@ TagManager:
   - MainMenuTrigger
   - WaterZone
   - PhysicObstacles
+  - GravityWell
   layers:
   - Default
   - TransparentFX

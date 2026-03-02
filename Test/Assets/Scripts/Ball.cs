@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxEnergy = 100;
     [SerializeField] private float energyRegenerationRate = 33;
     [SerializeField] private float drowningEnergyRate = 10;
+    private float initialGravityScale = 2;
 
     private bool insideWater;
     private bool finishedLevel;
@@ -28,6 +29,7 @@ public class Ball : MonoBehaviour
         //defaultRbBodyType = rb.bodyType;
         finishedLevel = false;
         isDead = false;
+        initialGravityScale = rb.gravityScale;
     }
 
     void Update()
@@ -213,13 +215,22 @@ public class Ball : MonoBehaviour
         {
             insideWater = true;
         }
+        if(collision.tag == "GravityWell")
+        {
+            //Turns off gravity to get full sucking effect
+            rb.gravityScale = 0f;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "WaterZone")
+        if (collision.tag == "WaterZone")
         {
             insideWater = false;
+        }
+        if (collision.tag == "GravityWell")
+        {
+            rb.gravityScale = initialGravityScale;
         }
     }
 

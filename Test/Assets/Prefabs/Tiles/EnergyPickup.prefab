@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548bee01f0226de4db6fcfd7fc1c842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyRecoverPercentAmt: 0.34
