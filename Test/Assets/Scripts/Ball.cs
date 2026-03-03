@@ -71,6 +71,11 @@ public class Ball : MonoBehaviour
                 UIManager.Instance.ShowOptionsMenu(false); //force close Options Menu
                 UIManager.Instance.OptionsMainMenuButtonPressed();
             }
+            //debug key for playtesting
+            else if(Input.GetKeyDown(KeyCode.P) && GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
+            {
+                ProcessWin();
+            }
             
         }
         
