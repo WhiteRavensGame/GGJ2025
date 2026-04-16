@@ -125,6 +125,9 @@ public class Ball : MonoBehaviour
 
     private void Die()
     {
+        //prevents dying again when already killed (from dynamic killzones)
+        if (isDead) return;
+
         //Dead. Respawn.
         isDead = true;
         animator.Play("Die");
