@@ -14,9 +14,4 @@ public class Windzone : MonoBehaviour
         windEffector.forceAngle = transform.rotation.eulerAngles.z;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

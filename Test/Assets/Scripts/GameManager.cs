@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
                 
 
             currentLevel = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log($"{SceneManager.GetActiveScene().name} , {currentLevel}");
+            Debug.Log($"{SceneManager.GetActiveScene().name} , {currentLevel.ToString()}");
         } 
         else Destroy(this.gameObject);
 

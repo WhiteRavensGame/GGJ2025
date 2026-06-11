@@ -10,11 +10,6 @@ public class TilemapDestroyer : MonoBehaviour
     Vector3Int tilePos;
     [SerializeField] GridLayout grid;
 
-    void Start()
-    {
-
-
-    }
     // Update is called once per frame
     void Update()
     {

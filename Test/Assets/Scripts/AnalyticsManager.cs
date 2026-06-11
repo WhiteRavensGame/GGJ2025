@@ -109,12 +109,6 @@ public class AnalyticsManager : MonoBehaviour
         };
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void RecordDeath(int level, float deathX, float deathY)
     {
         if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
@@ -133,7 +127,7 @@ public class AnalyticsManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(myEvent);
         if(displayDebugLogs) 
-            Debug.Log($"[ANALYTICS]: DeathPoint Event sent: Level {level} at ({deathX},{deathY})");
+            Debug.Log($"[ANALYTICS]: DeathPoint Event sent: Level {level.ToString()} at ({deathX.ToString()},{deathY.ToString()})");
     }
 
     public void RecordLevelStart(int level)
@@ -152,7 +146,7 @@ public class AnalyticsManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(myEvent);
         if (displayDebugLogs)
-            Debug.Log($"[ANALYTICS] LevelStarted Event sent: Level {level} started.");
+            Debug.Log($"[ANALYTICS] LevelStarted Event sent: Level {level.ToString()} started.");
 
     }
 
@@ -173,7 +167,7 @@ public class AnalyticsManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(myEvent);
         if (displayDebugLogs)  
-            Debug.Log($"[ANALYTICS] LevelClear Event sent: Level {level} took {time}");
+            Debug.Log($"[ANALYTICS] LevelClear Event sent: Level {level.ToString()} took {time.ToString()}");
 
 
     }

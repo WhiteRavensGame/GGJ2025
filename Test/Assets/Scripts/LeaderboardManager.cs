@@ -33,12 +33,6 @@ namespace LeaderboardCreatorDemo
         private float Score => GameManager.Instance.CalculateFinalTotalTime();
         // ------------------------------------------------------------
 
-        private void Start()
-        {
-            //if(leaderboardType == LeaderboardType.Danzqz || leaderboardType == LeaderboardType.All)
-            //    LoadEntries();
-        }
-
         public async void AddScore(string leaderboardId, float score)
         {
             if (GameManager.Instance.GetDevEnvironment() == DevEnvironment.Development)
@@ -66,7 +60,7 @@ namespace LeaderboardCreatorDemo
 
             foreach (var entry in entries)
             {
-                Debug.Log($"Name: {entry.PlayerName} Score: {entry.Score}");
+                Debug.Log($"Name: {entry.PlayerName} Score: {entry.Score.ToString()}");
             }
 
 
@@ -130,7 +124,7 @@ namespace LeaderboardCreatorDemo
 
             if (leaderboard == null)
             {
-                Debug.LogWarning($"WARNING. Leaderboard for {level} doesn't exist.");
+                Debug.LogWarning($"WARNING. Leaderboard for {level.ToString()} doesn't exist.");
                 return;
             }
 
@@ -205,7 +199,7 @@ namespace LeaderboardCreatorDemo
             //allow two digits of milliseconds to be recorded
             float finalScore = time * 100;
 
-            Debug.Log($"Saving: {playerName} , {finalScore} , {level}");
+            Debug.Log($"Saving: {playerName.ToString()} , {finalScore.ToString()} , {level.ToString()}");
 
             LeaderboardReference leaderboard = GetLeaderboardByLevel(level);
 
